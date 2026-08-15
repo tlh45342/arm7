@@ -1,0 +1,10 @@
+
+basic.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a03001 	mov	r3, #1
+    8004:	e3a04002 	mov	r4, #2
+    8008:	e1212374 	bkpt	0x1234

@@ -1,0 +1,10 @@
+logfile basic.log
+set cpu debug=all
+version
+load basic.bin 0x8000
+set r15 0x8000
+e 0x8000-0x8050
+step
+step
+step
+regs
