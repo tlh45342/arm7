@@ -1,0 +1,5 @@
+load hello-crt.bin 0x8000
+set pc 0x8000
+run
+show crt
+quit

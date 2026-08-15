@@ -1,0 +1,5 @@
+create tests/bios-boot-test.img 1M
+format tests/bios-boot-test.img
+put tests/bios-boot-test.img tests/boot-stub.bin BOOT.BIN
+info tests/bios-boot-test.img
+list tests/bios-boot-test.img

@@ -1,0 +1,54 @@
+
+hello-crt.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3000000 	movw	r0, #0
+    8004:	e3400a00 	movt	r0, #2560	; 0xa00
+    8008:	e3a02007 	mov	r2, #7
+    800c:	e3a01048 	mov	r1, #72	; 0x48
+    8010:	e5c01000 	strb	r1, [r0]
+    8014:	e5c02001 	strb	r2, [r0, #1]
+    8018:	e2800002 	add	r0, r0, #2
+    801c:	e3a01045 	mov	r1, #69	; 0x45
+    8020:	e5c01000 	strb	r1, [r0]
+    8024:	e5c02001 	strb	r2, [r0, #1]
+    8028:	e2800002 	add	r0, r0, #2
+    802c:	e3a0104c 	mov	r1, #76	; 0x4c
+    8030:	e5c01000 	strb	r1, [r0]
+    8034:	e5c02001 	strb	r2, [r0, #1]
+    8038:	e2800002 	add	r0, r0, #2
+    803c:	e3a0104c 	mov	r1, #76	; 0x4c
+    8040:	e5c01000 	strb	r1, [r0]
+    8044:	e5c02001 	strb	r2, [r0, #1]
+    8048:	e2800002 	add	r0, r0, #2
+    804c:	e3a0104f 	mov	r1, #79	; 0x4f
+    8050:	e5c01000 	strb	r1, [r0]
+    8054:	e5c02001 	strb	r2, [r0, #1]
+    8058:	e2800002 	add	r0, r0, #2
+    805c:	e3a01020 	mov	r1, #32
+    8060:	e5c01000 	strb	r1, [r0]
+    8064:	e5c02001 	strb	r2, [r0, #1]
+    8068:	e2800002 	add	r0, r0, #2
+    806c:	e3a01057 	mov	r1, #87	; 0x57
+    8070:	e5c01000 	strb	r1, [r0]
+    8074:	e5c02001 	strb	r2, [r0, #1]
+    8078:	e2800002 	add	r0, r0, #2
+    807c:	e3a0104f 	mov	r1, #79	; 0x4f
+    8080:	e5c01000 	strb	r1, [r0]
+    8084:	e5c02001 	strb	r2, [r0, #1]
+    8088:	e2800002 	add	r0, r0, #2
+    808c:	e3a01052 	mov	r1, #82	; 0x52
+    8090:	e5c01000 	strb	r1, [r0]
+    8094:	e5c02001 	strb	r2, [r0, #1]
+    8098:	e2800002 	add	r0, r0, #2
+    809c:	e3a0104c 	mov	r1, #76	; 0x4c
+    80a0:	e5c01000 	strb	r1, [r0]
+    80a4:	e5c02001 	strb	r2, [r0, #1]
+    80a8:	e2800002 	add	r0, r0, #2
+    80ac:	e3a01044 	mov	r1, #68	; 0x44
+    80b0:	e5c01000 	strb	r1, [r0]
+    80b4:	e5c02001 	strb	r2, [r0, #1]
+    80b8:	e1213774 	bkpt	0x1374

@@ -1,0 +1,228 @@
+
+boot.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00010000 <_start>:
+   10000:	e3004000 	movw	r4, #0
+   10004:	e3404a00 	movt	r4, #2560	; 0xa00
+   10008:	e3000254 	movw	r0, #596	; 0x254
+   1000c:	e3400001 	movt	r0, #1
+   10010:	e1a01004 	mov	r1, r4
+   10014:	e28110a0 	add	r1, r1, #160	; 0xa0
+   10018:	e3a03007 	mov	r3, #7
+   1001c:	e4d02001 	ldrb	r2, [r0], #1
+   10020:	e3520000 	cmp	r2, #0
+   10024:	0a000003 	beq	10038 <_start+0x38>
+   10028:	e5c12000 	strb	r2, [r1]
+   1002c:	e5c13001 	strb	r3, [r1, #1]
+   10030:	e2811002 	add	r1, r1, #2
+   10034:	eafffff8 	b	1001c <_start+0x1c>
+   10038:	e3a00000 	mov	r0, #0
+   1003c:	e3001000 	movw	r1, #0
+   10040:	e3401003 	movt	r1, #3
+   10044:	e28fc000 	add	ip, pc, #0
+   10048:	ea000058 	b	101b0 <disk_read_sector>
+
+0001004c <after_header_read>:
+   1004c:	e3500000 	cmp	r0, #0
+   10050:	0a00006c 	beq	10208 <boot_disk_error>
+   10054:	e3006000 	movw	r6, #0
+   10058:	e3406003 	movt	r6, #3
+   1005c:	e5960000 	ldr	r0, [r6]
+   10060:	e3041653 	movw	r1, #18003	; 0x4653
+   10064:	e345144c 	movt	r1, #21580	; 0x544c
+   10068:	e1500001 	cmp	r0, r1
+   1006c:	1a000068 	bne	10214 <boot_format_error>
+   10070:	e5960008 	ldr	r0, [r6, #8]
+   10074:	e3500c02 	cmp	r0, #512	; 0x200
+   10078:	1a000065 	bne	10214 <boot_format_error>
+   1007c:	e5968010 	ldr	r8, [r6, #16]
+   10080:	e5969014 	ldr	r9, [r6, #20]
+   10084:	e596a018 	ldr	sl, [r6, #24]
+   10088:	e3580000 	cmp	r8, #0
+   1008c:	0a000060 	beq	10214 <boot_format_error>
+   10090:	e3590000 	cmp	r9, #0
+   10094:	0a000061 	beq	10220 <monitor_not_found>
+   10098:	e35a0040 	cmp	sl, #64	; 0x40
+   1009c:	1a00005c 	bne	10214 <boot_format_error>
+
+000100a0 <directory_sector_loop>:
+   100a0:	e1a00008 	mov	r0, r8
+   100a4:	e3001400 	movw	r1, #1024	; 0x400
+   100a8:	e3401003 	movt	r1, #3
+   100ac:	e28fc000 	add	ip, pc, #0
+   100b0:	ea00003e 	b	101b0 <disk_read_sector>
+
+000100b4 <after_directory_read>:
+   100b4:	e3500000 	cmp	r0, #0
+   100b8:	0a000052 	beq	10208 <boot_disk_error>
+   100bc:	e3006400 	movw	r6, #1024	; 0x400
+   100c0:	e3406003 	movt	r6, #3
+   100c4:	e3a07008 	mov	r7, #8
+
+000100c8 <directory_entry_loop>:
+   100c8:	e3590000 	cmp	r9, #0
+   100cc:	0a000053 	beq	10220 <monitor_not_found>
+   100d0:	e5960000 	ldr	r0, [r6]
+   100d4:	e3041f4d 	movw	r1, #20301	; 0x4f4d
+   100d8:	e344194e 	movt	r1, #18766	; 0x494e
+   100dc:	e1500001 	cmp	r0, r1
+   100e0:	1a000009 	bne	1010c <next_directory_entry>
+   100e4:	e5960004 	ldr	r0, [r6, #4]
+   100e8:	e3041f54 	movw	r1, #20308	; 0x4f54
+   100ec:	e3421e52 	movt	r1, #11858	; 0x2e52
+   100f0:	e1500001 	cmp	r0, r1
+   100f4:	1a000004 	bne	1010c <next_directory_entry>
+   100f8:	e5960008 	ldr	r0, [r6, #8]
+   100fc:	e3041942 	movw	r1, #18754	; 0x4942
+   10100:	e340104e 	movt	r1, #78	; 0x4e
+   10104:	e1500001 	cmp	r0, r1
+   10108:	0a000006 	beq	10128 <monitor_entry_found>
+
+0001010c <next_directory_entry>:
+   1010c:	e2866040 	add	r6, r6, #64	; 0x40
+   10110:	e2599001 	subs	r9, r9, #1
+   10114:	0a000041 	beq	10220 <monitor_not_found>
+   10118:	e2577001 	subs	r7, r7, #1
+   1011c:	1affffe9 	bne	100c8 <directory_entry_loop>
+   10120:	e2888001 	add	r8, r8, #1
+   10124:	eaffffdd 	b	100a0 <directory_sector_loop>
+
+00010128 <monitor_entry_found>:
+   10128:	e5968020 	ldr	r8, [r6, #32]
+   1012c:	e5969024 	ldr	r9, [r6, #36]	; 0x24
+   10130:	e3590000 	cmp	r9, #0
+   10134:	0a000039 	beq	10220 <monitor_not_found>
+   10138:	e2899c01 	add	r9, r9, #256	; 0x100
+   1013c:	e28990ff 	add	r9, r9, #255	; 0xff
+   10140:	e1a094a9 	lsr	r9, r9, #9
+   10144:	e300a000 	movw	sl, #0
+   10148:	e340a002 	movt	sl, #2
+
+0001014c <load_monitor_loop>:
+   1014c:	e1a00008 	mov	r0, r8
+   10150:	e1a0100a 	mov	r1, sl
+   10154:	e28fc000 	add	ip, pc, #0
+   10158:	ea000014 	b	101b0 <disk_read_sector>
+
+0001015c <after_monitor_sector_read>:
+   1015c:	e3500000 	cmp	r0, #0
+   10160:	0a000028 	beq	10208 <boot_disk_error>
+   10164:	e2888001 	add	r8, r8, #1
+   10168:	e28aac02 	add	sl, sl, #512	; 0x200
+   1016c:	e2599001 	subs	r9, r9, #1
+   10170:	1afffff5 	bne	1014c <load_monitor_loop>
+   10174:	e3000265 	movw	r0, #613	; 0x265
+   10178:	e3400001 	movt	r0, #1
+   1017c:	e1a01004 	mov	r1, r4
+   10180:	e2811d05 	add	r1, r1, #320	; 0x140
+   10184:	e3a03007 	mov	r3, #7
+   10188:	e4d02001 	ldrb	r2, [r0], #1
+   1018c:	e3520000 	cmp	r2, #0
+   10190:	0a000003 	beq	101a4 <after_monitor_sector_read+0x48>
+   10194:	e5c12000 	strb	r2, [r1]
+   10198:	e5c13001 	strb	r3, [r1, #1]
+   1019c:	e2811002 	add	r1, r1, #2
+   101a0:	eafffff8 	b	10188 <after_monitor_sector_read+0x2c>
+   101a4:	e3000000 	movw	r0, #0
+   101a8:	e3400002 	movt	r0, #2
+   101ac:	e12fff10 	bx	r0
+
+000101b0 <disk_read_sector>:
+   101b0:	e3002000 	movw	r2, #0
+   101b4:	e3402b00 	movt	r2, #2816	; 0xb00
+   101b8:	e5820004 	str	r0, [r2, #4]
+   101bc:	e3a03001 	mov	r3, #1
+   101c0:	e5823008 	str	r3, [r2, #8]
+   101c4:	e3a03081 	mov	r3, #129	; 0x81
+   101c8:	e582300c 	str	r3, [r2, #12]
+   101cc:	e5923010 	ldr	r3, [r2, #16]
+   101d0:	e3130004 	tst	r3, #4
+   101d4:	1a000009 	bne	10200 <disk_read_sector+0x50>
+   101d8:	e3130002 	tst	r3, #2
+   101dc:	0afffffa 	beq	101cc <disk_read_sector+0x1c>
+   101e0:	e2822c02 	add	r2, r2, #512	; 0x200
+   101e4:	e3a03080 	mov	r3, #128	; 0x80
+   101e8:	e4925004 	ldr	r5, [r2], #4
+   101ec:	e4815004 	str	r5, [r1], #4
+   101f0:	e2533001 	subs	r3, r3, #1
+   101f4:	1afffffb 	bne	101e8 <disk_read_sector+0x38>
+   101f8:	e3a00001 	mov	r0, #1
+   101fc:	e12fff1c 	bx	ip
+   10200:	e3a00000 	mov	r0, #0
+   10204:	e12fff1c 	bx	ip
+
+00010208 <boot_disk_error>:
+   10208:	e3000278 	movw	r0, #632	; 0x278
+   1020c:	e3400001 	movt	r0, #1
+   10210:	ea000004 	b	10228 <show_error>
+
+00010214 <boot_format_error>:
+   10214:	e3000296 	movw	r0, #662	; 0x296
+   10218:	e3400001 	movt	r0, #1
+   1021c:	ea000001 	b	10228 <show_error>
+
+00010220 <monitor_not_found>:
+   10220:	e30002b2 	movw	r0, #690	; 0x2b2
+   10224:	e3400001 	movt	r0, #1
+
+00010228 <show_error>:
+   10228:	e1a01004 	mov	r1, r4
+   1022c:	e2811d05 	add	r1, r1, #320	; 0x140
+   10230:	e3a03007 	mov	r3, #7
+   10234:	e4d02001 	ldrb	r2, [r0], #1
+   10238:	e3520000 	cmp	r2, #0
+   1023c:	0a000003 	beq	10250 <show_error+0x28>
+   10240:	e5c12000 	strb	r2, [r1]
+   10244:	e5c13001 	strb	r3, [r1, #1]
+   10248:	e2811002 	add	r1, r1, #2
+   1024c:	eafffff8 	b	10234 <show_error+0xc>
+   10250:	e1203070 	bkpt	0x0300
+
+00010254 <boot_banner>:
+   10254:	374d5241 	.word	0x374d5241
+   10258:	4f4f4220 	.word	0x4f4f4220
+   1025c:	30762054 	.word	0x30762054
+   10260:	322e302e 	.word	0x322e302e
+	...
+
+00010265 <monitor_loaded_msg>:
+   10265:	4d          	.byte	0x4d
+   10266:	4e4f      	.short	0x4e4f
+   10268:	524f5449 	.word	0x524f5449
+   1026c:	4e49422e 	.word	0x4e49422e
+   10270:	616f6c20 	.word	0x616f6c20
+   10274:	00646564 	.word	0x00646564
+
+00010278 <disk_error_msg>:
+   10278:	544f4f42 	.word	0x544f4f42
+   1027c:	52524520 	.word	0x52524520
+   10280:	203a524f 	.word	0x203a524f
+   10284:	6b736964 	.word	0x6b736964
+   10288:	65722030 	.word	0x65722030
+   1028c:	66206461 	.word	0x66206461
+   10290:	656c6961 	.word	0x656c6961
+   10294:	0064      	.short	0x0064
+
+00010296 <format_error_msg>:
+   10296:	4f42      	.short	0x4f42
+   10298:	4520544f 	.word	0x4520544f
+   1029c:	524f5252 	.word	0x524f5252
+   102a0:	6f6e203a 	.word	0x6f6e203a
+   102a4:	49532074 	.word	0x49532074
+   102a8:	454c504d 	.word	0x454c504d
+   102ac:	414c462d 	.word	0x414c462d
+   102b0:	0054      	.short	0x0054
+
+000102b2 <not_found_msg>:
+   102b2:	4f42      	.short	0x4f42
+   102b4:	4520544f 	.word	0x4520544f
+   102b8:	524f5252 	.word	0x524f5252
+   102bc:	4f4d203a 	.word	0x4f4d203a
+   102c0:	4f54494e 	.word	0x4f54494e
+   102c4:	49422e52 	.word	0x49422e52
+   102c8:	6f6e204e 	.word	0x6f6e204e
+   102cc:	6f662074 	.word	0x6f662074
+   102d0:	00646e75 	.word	0x00646e75

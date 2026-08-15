@@ -1,0 +1,365 @@
+
+monitor.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00020000 <_start>:
+   20000:	e3a05007 	mov	r5, #7
+   20004:	e3018000 	movw	r8, #4096	; 0x1000
+   20008:	e3408a00 	movt	r8, #2560	; 0xa00
+   2000c:	e300943c 	movw	r9, #1084	; 0x43c
+   20010:	e3409002 	movt	r9, #2
+   20014:	e3007140 	movw	r7, #320	; 0x140
+   20018:	e3407a00 	movt	r7, #2560	; 0xa00
+   2001c:	e3000380 	movw	r0, #896	; 0x380
+   20020:	e3400002 	movt	r0, #2
+   20024:	e1a01007 	mov	r1, r7
+   20028:	eb0000b9 	bl	20314 <print_string_at>
+   2002c:	e28770a0 	add	r7, r7, #160	; 0xa0
+   20030:	eaffffff 	b	20034 <print_prompt>
+
+00020034 <print_prompt>:
+   20034:	e3a0a000 	mov	sl, #0
+   20038:	e1a06007 	mov	r6, r7
+   2003c:	e3a0003e 	mov	r0, #62	; 0x3e
+   20040:	e5c60000 	strb	r0, [r6]
+   20044:	e5c65001 	strb	r5, [r6, #1]
+   20048:	e2866002 	add	r6, r6, #2
+   2004c:	e3a00020 	mov	r0, #32
+   20050:	e5c60000 	strb	r0, [r6]
+   20054:	e5c65001 	strb	r5, [r6, #1]
+   20058:	e2866002 	add	r6, r6, #2
+
+0002005c <keyboard_poll>:
+   2005c:	e5980000 	ldr	r0, [r8]
+   20060:	e3100001 	tst	r0, #1
+   20064:	0afffffc 	beq	2005c <keyboard_poll>
+   20068:	e5982004 	ldr	r2, [r8, #4]
+   2006c:	e20220ff 	and	r2, r2, #255	; 0xff
+   20070:	e352000d 	cmp	r2, #13
+   20074:	0a000018 	beq	200dc <handle_enter>
+   20078:	e3520008 	cmp	r2, #8
+   2007c:	0a00000e 	beq	200bc <handle_backspace>
+   20080:	e3520020 	cmp	r2, #32
+   20084:	3afffff4 	bcc	2005c <keyboard_poll>
+   20088:	e352007e 	cmp	r2, #126	; 0x7e
+   2008c:	8afffff2 	bhi	2005c <keyboard_poll>
+   20090:	e35a003f 	cmp	sl, #63	; 0x3f
+   20094:	2afffff0 	bcs	2005c <keyboard_poll>
+   20098:	e28730a0 	add	r3, r7, #160	; 0xa0
+   2009c:	e1560003 	cmp	r6, r3
+   200a0:	2affffed 	bcs	2005c <keyboard_poll>
+   200a4:	e7c9200a 	strb	r2, [r9, sl]
+   200a8:	e28aa001 	add	sl, sl, #1
+   200ac:	e5c62000 	strb	r2, [r6]
+   200b0:	e5c65001 	strb	r5, [r6, #1]
+   200b4:	e2866002 	add	r6, r6, #2
+   200b8:	eaffffe7 	b	2005c <keyboard_poll>
+
+000200bc <handle_backspace>:
+   200bc:	e35a0000 	cmp	sl, #0
+   200c0:	0affffe5 	beq	2005c <keyboard_poll>
+   200c4:	e24aa001 	sub	sl, sl, #1
+   200c8:	e2466002 	sub	r6, r6, #2
+   200cc:	e3a00020 	mov	r0, #32
+   200d0:	e5c60000 	strb	r0, [r6]
+   200d4:	e5c65001 	strb	r5, [r6, #1]
+   200d8:	eaffffdf 	b	2005c <keyboard_poll>
+
+000200dc <handle_enter>:
+   200dc:	e3a00000 	mov	r0, #0
+   200e0:	e7c9000a 	strb	r0, [r9, sl]
+   200e4:	e28770a0 	add	r7, r7, #160	; 0xa0
+   200e8:	eb00009d 	bl	20364 <normalize_row>
+   200ec:	e35a0000 	cmp	sl, #0
+   200f0:	0affffcf 	beq	20034 <print_prompt>
+   200f4:	eaffffff 	b	200f8 <dispatch_command>
+
+000200f8 <dispatch_command>:
+   200f8:	e1a00009 	mov	r0, r9
+   200fc:	e3001394 	movw	r1, #916	; 0x394
+   20100:	e3401002 	movt	r1, #2
+   20104:	eb000078 	bl	202ec <streq>
+   20108:	e3500000 	cmp	r0, #0
+   2010c:	0a00001e 	beq	2018c <do_help>
+   20110:	e1a00009 	mov	r0, r9
+   20114:	e3001399 	movw	r1, #921	; 0x399
+   20118:	e3401002 	movt	r1, #2
+   2011c:	eb000072 	bl	202ec <streq>
+   20120:	e3500000 	cmp	r0, #0
+   20124:	0a000037 	beq	20208 <do_about>
+   20128:	e1a00009 	mov	r0, r9
+   2012c:	e300139f 	movw	r1, #927	; 0x39f
+   20130:	e3401002 	movt	r1, #2
+   20134:	eb00006c 	bl	202ec <streq>
+   20138:	e3500000 	cmp	r0, #0
+   2013c:	0a000038 	beq	20224 <do_clear>
+   20140:	e1a00009 	mov	r0, r9
+   20144:	e30013a5 	movw	r1, #933	; 0x3a5
+   20148:	e3401002 	movt	r1, #2
+   2014c:	eb000066 	bl	202ec <streq>
+   20150:	e3500000 	cmp	r0, #0
+   20154:	0a00003b 	beq	20248 <do_time>
+   20158:	e1a00009 	mov	r0, r9
+   2015c:	e30013aa 	movw	r1, #938	; 0x3aa
+   20160:	e3401002 	movt	r1, #2
+   20164:	eb000060 	bl	202ec <streq>
+   20168:	e3500000 	cmp	r0, #0
+   2016c:	0a000059 	beq	202d8 <do_halt>
+   20170:	e30003af 	movw	r0, #943	; 0x3af
+   20174:	e3400002 	movt	r0, #2
+   20178:	e1a01007 	mov	r1, r7
+   2017c:	eb000064 	bl	20314 <print_string_at>
+   20180:	e28770a0 	add	r7, r7, #160	; 0xa0
+   20184:	eb000076 	bl	20364 <normalize_row>
+   20188:	eaffffa9 	b	20034 <print_prompt>
+
+0002018c <do_help>:
+   2018c:	e30003bf 	movw	r0, #959	; 0x3bf
+   20190:	e3400002 	movt	r0, #2
+   20194:	e1a01007 	mov	r1, r7
+   20198:	eb00005d 	bl	20314 <print_string_at>
+   2019c:	e28770a0 	add	r7, r7, #160	; 0xa0
+   201a0:	eb00006f 	bl	20364 <normalize_row>
+   201a4:	e30003d6 	movw	r0, #982	; 0x3d6
+   201a8:	e3400002 	movt	r0, #2
+   201ac:	e1a01007 	mov	r1, r7
+   201b0:	eb000057 	bl	20314 <print_string_at>
+   201b4:	e28770a0 	add	r7, r7, #160	; 0xa0
+   201b8:	eb000069 	bl	20364 <normalize_row>
+   201bc:	e30003ef 	movw	r0, #1007	; 0x3ef
+   201c0:	e3400002 	movt	r0, #2
+   201c4:	e1a01007 	mov	r1, r7
+   201c8:	eb000051 	bl	20314 <print_string_at>
+   201cc:	e28770a0 	add	r7, r7, #160	; 0xa0
+   201d0:	eb000063 	bl	20364 <normalize_row>
+   201d4:	e3000405 	movw	r0, #1029	; 0x405
+   201d8:	e3400002 	movt	r0, #2
+   201dc:	e1a01007 	mov	r1, r7
+   201e0:	eb00004b 	bl	20314 <print_string_at>
+   201e4:	e28770a0 	add	r7, r7, #160	; 0xa0
+   201e8:	eb00005d 	bl	20364 <normalize_row>
+   201ec:	e300041c 	movw	r0, #1052	; 0x41c
+   201f0:	e3400002 	movt	r0, #2
+   201f4:	e1a01007 	mov	r1, r7
+   201f8:	eb000045 	bl	20314 <print_string_at>
+   201fc:	e28770a0 	add	r7, r7, #160	; 0xa0
+   20200:	eb000057 	bl	20364 <normalize_row>
+   20204:	eaffff8a 	b	20034 <print_prompt>
+
+00020208 <do_about>:
+   20208:	e3000380 	movw	r0, #896	; 0x380
+   2020c:	e3400002 	movt	r0, #2
+   20210:	e1a01007 	mov	r1, r7
+   20214:	eb00003e 	bl	20314 <print_string_at>
+   20218:	e28770a0 	add	r7, r7, #160	; 0xa0
+   2021c:	eb000050 	bl	20364 <normalize_row>
+   20220:	eaffff83 	b	20034 <print_prompt>
+
+00020224 <do_clear>:
+   20224:	eb000042 	bl	20334 <clear_screen>
+   20228:	e3007000 	movw	r7, #0
+   2022c:	e3407a00 	movt	r7, #2560	; 0xa00
+   20230:	e3000380 	movw	r0, #896	; 0x380
+   20234:	e3400002 	movt	r0, #2
+   20238:	e1a01007 	mov	r1, r7
+   2023c:	eb000034 	bl	20314 <print_string_at>
+   20240:	e28770a0 	add	r7, r7, #160	; 0xa0
+   20244:	eaffff7a 	b	20034 <print_prompt>
+
+00020248 <do_time>:
+   20248:	e3024000 	movw	r4, #8192	; 0x2000
+   2024c:	e34f4000 	movt	r4, #61440	; 0xf000
+   20250:	e594001c 	ldr	r0, [r4, #28]
+   20254:	e1a01007 	mov	r1, r7
+   20258:	eb00000e 	bl	20298 <print_two_digits>
+   2025c:	e3a0003a 	mov	r0, #58	; 0x3a
+   20260:	e2871004 	add	r1, r7, #4
+   20264:	eb000018 	bl	202cc <put_cell>
+   20268:	e5940020 	ldr	r0, [r4, #32]
+   2026c:	e2871006 	add	r1, r7, #6
+   20270:	eb000008 	bl	20298 <print_two_digits>
+   20274:	e3a0003a 	mov	r0, #58	; 0x3a
+   20278:	e287100a 	add	r1, r7, #10
+   2027c:	eb000012 	bl	202cc <put_cell>
+   20280:	e5940024 	ldr	r0, [r4, #36]	; 0x24
+   20284:	e287100c 	add	r1, r7, #12
+   20288:	eb000002 	bl	20298 <print_two_digits>
+   2028c:	e28770a0 	add	r7, r7, #160	; 0xa0
+   20290:	eb000033 	bl	20364 <normalize_row>
+   20294:	eaffff66 	b	20034 <print_prompt>
+
+00020298 <print_two_digits>:
+   20298:	e3a02000 	mov	r2, #0
+   2029c:	e350000a 	cmp	r0, #10
+   202a0:	3a000002 	bcc	202b0 <print_two_digits+0x18>
+   202a4:	e240000a 	sub	r0, r0, #10
+   202a8:	e2822001 	add	r2, r2, #1
+   202ac:	eafffffa 	b	2029c <print_two_digits+0x4>
+   202b0:	e2822030 	add	r2, r2, #48	; 0x30
+   202b4:	e5c12000 	strb	r2, [r1]
+   202b8:	e5c15001 	strb	r5, [r1, #1]
+   202bc:	e2800030 	add	r0, r0, #48	; 0x30
+   202c0:	e5c10002 	strb	r0, [r1, #2]
+   202c4:	e5c15003 	strb	r5, [r1, #3]
+   202c8:	e12fff1e 	bx	lr
+
+000202cc <put_cell>:
+   202cc:	e5c10000 	strb	r0, [r1]
+   202d0:	e5c15001 	strb	r5, [r1, #1]
+   202d4:	e12fff1e 	bx	lr
+
+000202d8 <do_halt>:
+   202d8:	e300042e 	movw	r0, #1070	; 0x42e
+   202dc:	e3400002 	movt	r0, #2
+   202e0:	e1a01007 	mov	r1, r7
+   202e4:	eb00000a 	bl	20314 <print_string_at>
+   202e8:	e1230073 	bkpt	0x3003
+
+000202ec <streq>:
+   202ec:	e4d02001 	ldrb	r2, [r0], #1
+   202f0:	e4d13001 	ldrb	r3, [r1], #1
+   202f4:	e1520003 	cmp	r2, r3
+   202f8:	1a000003 	bne	2030c <streq_no>
+   202fc:	e3520000 	cmp	r2, #0
+   20300:	1afffff9 	bne	202ec <streq>
+   20304:	e3a00000 	mov	r0, #0
+   20308:	e12fff1e 	bx	lr
+
+0002030c <streq_no>:
+   2030c:	e3a00001 	mov	r0, #1
+   20310:	e12fff1e 	bx	lr
+
+00020314 <print_string_at>:
+   20314:	e4d02001 	ldrb	r2, [r0], #1
+   20318:	e3520000 	cmp	r2, #0
+   2031c:	0a000003 	beq	20330 <print_string_done>
+   20320:	e5c12000 	strb	r2, [r1]
+   20324:	e5c15001 	strb	r5, [r1, #1]
+   20328:	e2811002 	add	r1, r1, #2
+   2032c:	eafffff8 	b	20314 <print_string_at>
+
+00020330 <print_string_done>:
+   20330:	e12fff1e 	bx	lr
+
+00020334 <clear_screen>:
+   20334:	e3000000 	movw	r0, #0
+   20338:	e3400a00 	movt	r0, #2560	; 0xa00
+   2033c:	e3001fa0 	movw	r1, #4000	; 0xfa0
+   20340:	e3401a00 	movt	r1, #2560	; 0xa00
+   20344:	e3a02020 	mov	r2, #32
+
+00020348 <clear_loop>:
+   20348:	e1500001 	cmp	r0, r1
+   2034c:	2a000003 	bcs	20360 <clear_done>
+   20350:	e5c02000 	strb	r2, [r0]
+   20354:	e5c05001 	strb	r5, [r0, #1]
+   20358:	e2800002 	add	r0, r0, #2
+   2035c:	eafffff9 	b	20348 <clear_loop>
+
+00020360 <clear_done>:
+   20360:	e12fff1e 	bx	lr
+
+00020364 <normalize_row>:
+   20364:	e3000fa0 	movw	r0, #4000	; 0xfa0
+   20368:	e3400a00 	movt	r0, #2560	; 0xa00
+   2036c:	e1570000 	cmp	r7, r0
+   20370:	3a000001 	bcc	2037c <normalize_done>
+   20374:	e3007000 	movw	r7, #0
+   20378:	e3407a00 	movt	r7, #2560	; 0xa00
+
+0002037c <normalize_done>:
+   2037c:	e12fff1e 	bx	lr
+
+00020380 <monitor_banner>:
+   20380:	374d5241 	.word	0x374d5241
+   20384:	6e6f4d20 	.word	0x6e6f4d20
+   20388:	726f7469 	.word	0x726f7469
+   2038c:	2e307620 	.word	0x2e307620
+   20390:	00342e30 	.word	0x00342e30
+
+00020394 <cmd_help>:
+   20394:	706c6568 	.word	0x706c6568
+	...
+
+00020399 <cmd_about>:
+   20399:	61          	.byte	0x61
+   2039a:	6f62      	.short	0x6f62
+   2039c:	7475      	.short	0x7475
+	...
+
+0002039f <cmd_clear>:
+   2039f:	63          	.byte	0x63
+   203a0:	7261656c 	.word	0x7261656c
+	...
+
+000203a5 <cmd_time>:
+   203a5:	74          	.byte	0x74
+   203a6:	6d69      	.short	0x6d69
+   203a8:	0065      	.short	0x0065
+
+000203aa <cmd_halt>:
+   203aa:	6168      	.short	0x6168
+   203ac:	746c      	.short	0x746c
+	...
+
+000203af <msg_unknown>:
+   203af:	55          	.byte	0x55
+   203b0:	6f6e6b6e 	.word	0x6f6e6b6e
+   203b4:	63206e77 	.word	0x63206e77
+   203b8:	616d6d6f 	.word	0x616d6d6f
+   203bc:	646e      	.short	0x646e
+	...
+
+000203bf <msg_help1>:
+   203bf:	68          	.byte	0x68
+   203c0:	20706c65 	.word	0x20706c65
+   203c4:	202d2020 	.word	0x202d2020
+   203c8:	776f6873 	.word	0x776f6873
+   203cc:	6d6f6320 	.word	0x6d6f6320
+   203d0:	646e616d 	.word	0x646e616d
+   203d4:	0073      	.short	0x0073
+
+000203d6 <msg_help2>:
+   203d6:	6261      	.short	0x6261
+   203d8:	2074756f 	.word	0x2074756f
+   203dc:	6d202d20 	.word	0x6d202d20
+   203e0:	74696e6f 	.word	0x74696e6f
+   203e4:	7620726f 	.word	0x7620726f
+   203e8:	69737265 	.word	0x69737265
+   203ec:	6e6f      	.short	0x6e6f
+	...
+
+000203ef <msg_help3>:
+   203ef:	63          	.byte	0x63
+   203f0:	7261656c 	.word	0x7261656c
+   203f4:	202d2020 	.word	0x202d2020
+   203f8:	61656c63 	.word	0x61656c63
+   203fc:	63732072 	.word	0x63732072
+   20400:	6e656572 	.word	0x6e656572
+	...
+
+00020405 <msg_help4>:
+   20405:	74          	.byte	0x74
+   20406:	6d69      	.short	0x6d69
+   20408:	20202065 	.word	0x20202065
+   2040c:	6873202d 	.word	0x6873202d
+   20410:	5220776f 	.word	0x5220776f
+   20414:	74204354 	.word	0x74204354
+   20418:	00656d69 	.word	0x00656d69
+
+0002041c <msg_help5>:
+   2041c:	746c6168 	.word	0x746c6168
+   20420:	2d202020 	.word	0x2d202020
+   20424:	6f747320 	.word	0x6f747320
+   20428:	50432070 	.word	0x50432070
+   2042c:	0055      	.short	0x0055
+
+0002042e <msg_halt>:
+   2042e:	5043      	.short	0x5043
+   20430:	61682055 	.word	0x61682055
+   20434:	6465746c 	.word	0x6465746c
+   20438:	00          	.byte	0x00
+   20439:	00          	.byte	0x00
+	...

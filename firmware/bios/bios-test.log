@@ -1,0 +1,45 @@
+Logging to bios-test.log
+[DISK] disk0 attached at 0x0B000000 (1048576 bytes)
+[LOAD] bios.bin @ 0x00000000 (824 bytes)
+[DISK] CMD write val=0x81 LBA=0 COUNT=1 STATUS(before)=0x0
+[DISK] READ LBA=0 (count=1) → DRQ, first16=53 46 4c 54 00 01 00 00 00 02 00 00 00 08 00 00
+[DISK] CMD handled: STATUS(after)=0x2
+[DISK] CMD write val=0x81 LBA=1 COUNT=1 STATUS(before)=0x2
+[DISK] READ LBA=1 (count=1) → DRQ, first16=42 4f 4f 54 2e 42 49 4e 00 00 00 00 00 00 00 00
+[DISK] CMD handled: STATUS(after)=0x2
+[DISK] CMD write val=0x81 LBA=8 COUNT=1 STATUS(before)=0x2
+[DISK] READ LBA=8 (count=1) → DRQ, first16=a0 40 00 e3 00 4a 40 e3 34 00 00 e3 01 00 40 e3
+[DISK] CMD handled: STATUS(after)=0x2
+[BKPT]r0  = 0x00010044  r1  = 0x00000000  r2  = 0x00000000  r3  = 0x00000007
+r4  = 0x0A0000BE  r5  = 0x00000007  r6  = 0x00030400  r7  = 0x00000008
+r8  = 0x00000009  r9  = 0x00000000  r10 = 0x00010200  r11 = 0x00000000
+r12 = 0x0000019C  r13 = 0x001FF000  r14 = 0x00000000  r15 = 0x00010030
+CPSR = 0x60000000  cycle=12103
+
+--- CRT 80x25 @ 0x0A000000 ---
+ARM7 BIOS v0.0.3                                                                
+BOOT HANDOFF OKOT.BIN loaded                                                    
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+--- end CRT ---

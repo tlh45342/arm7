@@ -1,0 +1,9 @@
+logfile bios-test.log
+set cpu debug=instr
+load bios.bin 0x00000000
+load tests/boot-stub.bin 0x00010000
+set pc 0x00000000
+run
+regs
+show crt
+quit

@@ -1,0 +1,6 @@
+create build/disk.img 5M
+format build/disk.img
+put build/disk.img build/BOOT.BIN BOOT.BIN
+put build/disk.img build/MONITOR.BIN MONITOR.BIN
+info build/disk.img
+list build/disk.img
