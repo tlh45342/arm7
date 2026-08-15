@@ -1,0 +1,7 @@
+logfile test_asr.log
+set cpu debug=all
+version
+load test_asr.bin 0x8000
+set r15 0x8000
+run
+regs

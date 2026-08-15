@@ -1,0 +1,9 @@
+logfile test_str.log
+set cpu debug=instr
+load test_str.bin 0x8000
+set pc 0x8000
+run
+regs
+e 0x00100000-0x00100013
+e 0x00100100-0x0010011b
+quit

@@ -1,0 +1,22 @@
+
+test_rsc.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a00002 	mov	r0, #2
+    8004:	e3a0100a 	mov	r1, #10
+    8008:	e1500000 	cmp	r0, r0
+    800c:	e10f4000 	mrs	r4, CPSR
+    8010:	e0e02001 	rsc	r2, r0, r1
+    8014:	e1500001 	cmp	r0, r1
+    8018:	e10f5000 	mrs	r5, CPSR
+    801c:	e0e03001 	rsc	r3, r0, r1
+    8020:	e0f08001 	rscs	r8, r0, r1
+    8024:	e10f6000 	mrs	r6, CPSR
+    8028:	e0f0b081 	rscs	fp, r0, r1, lsl #1
+    802c:	e10f7000 	mrs	r7, CPSR
+    8030:	e51fc000 	ldr	ip, [pc, #-0]	; 8038 <_start+0x38>
+    8034:	e1212374 	bkpt	0x1234
+    8038:	deadbeef 	.word	0xdeadbeef

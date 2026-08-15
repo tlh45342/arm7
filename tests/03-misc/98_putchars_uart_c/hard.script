@@ -1,0 +1,5 @@
+logfile test_disk_read.log
+attach disk0 floppy.img
+load test_cross.bin 0x8000
+set r15 0x8000
+run

@@ -1,0 +1,57 @@
+
+test_teq.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a000f0 	mov	r0, #240	; 0xf0
+    8004:	e3a010f0 	mov	r1, #240	; 0xf0
+    8008:	e1300001 	teq	r0, r1
+    800c:	e10f4000 	mrs	r4, CPSR
+    8010:	e3a000aa 	mov	r0, #170	; 0xaa
+    8014:	e3a0100f 	mov	r1, #15
+    8018:	e1300001 	teq	r0, r1
+    801c:	e10f5000 	mrs	r5, CPSR
+    8020:	e3a00001 	mov	r0, #1
+    8024:	e1a00f80 	lsl	r0, r0, #31
+    8028:	e3a01000 	mov	r1, #0
+    802c:	e1300001 	teq	r0, r1
+    8030:	e10f6000 	mrs	r6, CPSR
+    8034:	e1500000 	cmp	r0, r0
+    8038:	e10f7000 	mrs	r7, CPSR
+    803c:	e33000ff 	teq	r0, #255	; 0xff
+    8040:	e10f8000 	mrs	r8, CPSR
+    8044:	e3300102 	teq	r0, #-2147483648	; 0x80000000
+    8048:	e10f9000 	mrs	r9, CPSR
+    804c:	e3a01001 	mov	r1, #1
+    8050:	e1a01f81 	lsl	r1, r1, #31
+    8054:	e1300081 	teq	r0, r1, lsl #1
+    8058:	e10fa000 	mrs	sl, CPSR
+    805c:	e3a01001 	mov	r1, #1
+    8060:	e1a01f81 	lsl	r1, r1, #31
+    8064:	e1300021 	teq	r0, r1, lsr #32
+    8068:	e10fb000 	mrs	fp, CPSR
+    806c:	e3a01000 	mov	r1, #0
+    8070:	e1300041 	teq	r0, r1, asr #32
+    8074:	e10fc000 	mrs	ip, CPSR
+    8078:	e3a01001 	mov	r1, #1
+    807c:	e1300061 	teq	r0, r1, rrx
+    8080:	e10fe000 	mrs	lr, CPSR
+    8084:	e3a0000f 	mov	r0, #15
+    8088:	e3a01001 	mov	r1, #1
+    808c:	e3a02003 	mov	r2, #3
+    8090:	e1300211 	teq	r0, r1, lsl r2
+    8094:	e10fa000 	mrs	sl, CPSR
+    8098:	e3a0207f 	mov	r2, #127	; 0x7f
+    809c:	e1a02c02 	lsl	r2, r2, #24
+    80a0:	e2922481 	adds	r2, r2, #-2130706432	; 0x81000000
+    80a4:	e10f3000 	mrs	r3, CPSR
+    80a8:	e3320000 	teq	r2, #0
+    80ac:	e10f2000 	mrs	r2, CPSR
+    80b0:	e1500001 	cmp	r0, r1
+    80b4:	01300001 	teqeq	r0, r1
+    80b8:	e10f1000 	mrs	r1, CPSR
+    80bc:	e51fd000 	ldr	sp, [pc, #-0]	; 80c4 <_start+0xc4>
+    80c0:	e1212374 	bkpt	0x1234
+    80c4:	deadbeef 	.word	0xdeadbeef

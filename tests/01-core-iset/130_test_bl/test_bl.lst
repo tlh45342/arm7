@@ -1,0 +1,25 @@
+
+test_bl.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3006000 	movw	r6, #0
+    8004:	e3406010 	movt	r6, #16
+    8008:	e3a00000 	mov	r0, #0
+    800c:	e3a01000 	mov	r1, #0
+    8010:	eb000003 	bl	8024 <subroutine>
+
+00008014 <after_bl>:
+    8014:	e3021222 	movw	r1, #8738	; 0x2222
+    8018:	e3421222 	movt	r1, #8738	; 0x2222
+    801c:	e5861008 	str	r1, [r6, #8]
+    8020:	e1213774 	bkpt	0x1374
+
+00008024 <subroutine>:
+    8024:	e3010111 	movw	r0, #4369	; 0x1111
+    8028:	e3410111 	movt	r0, #4369	; 0x1111
+    802c:	e5860000 	str	r0, [r6]
+    8030:	e586e004 	str	lr, [r6, #4]
+    8034:	e12fff1e 	bx	lr

@@ -1,0 +1,5 @@
+logfile putchars_uart_c.log
+set cpu debug=all
+load putchars_uart_c.bin 0x8000
+set r15 0x8000
+run

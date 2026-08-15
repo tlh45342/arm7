@@ -1,0 +1,1 @@
+rm-none-eabi-objdump -d test_putchars.elf

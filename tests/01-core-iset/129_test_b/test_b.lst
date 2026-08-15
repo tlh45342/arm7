@@ -1,0 +1,42 @@
+
+test_b.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3006000 	movw	r6, #0
+    8004:	e3406010 	movt	r6, #16
+    8008:	e3a00000 	mov	r0, #0
+    800c:	ea000000 	b	8014 <case1_target>
+    8010:	e3a000ee 	mov	r0, #238	; 0xee
+
+00008014 <case1_target>:
+    8014:	e3a00001 	mov	r0, #1
+    8018:	e5860000 	str	r0, [r6]
+    801c:	e3a01003 	mov	r1, #3
+
+00008020 <case2_loop>:
+    8020:	e2411001 	sub	r1, r1, #1
+    8024:	e3510000 	cmp	r1, #0
+    8028:	1afffffc 	bne	8020 <case2_loop>
+    802c:	e5861004 	str	r1, [r6, #4]
+    8030:	e3500001 	cmp	r0, #1
+    8034:	0a000000 	beq	803c <case3_taken>
+    8038:	e3a020ee 	mov	r2, #238	; 0xee
+
+0000803c <case3_taken>:
+    803c:	e3a02002 	mov	r2, #2
+    8040:	e5862008 	str	r2, [r6, #8]
+    8044:	e3500000 	cmp	r0, #0
+    8048:	0a000002 	beq	8058 <case4_fail>
+    804c:	e3a03003 	mov	r3, #3
+    8050:	e586300c 	str	r3, [r6, #12]
+    8054:	ea000001 	b	8060 <done>
+
+00008058 <case4_fail>:
+    8058:	e3a030ee 	mov	r3, #238	; 0xee
+    805c:	e586300c 	str	r3, [r6, #12]
+
+00008060 <done>:
+    8060:	e1213774 	bkpt	0x1374

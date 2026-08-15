@@ -1,0 +1,11 @@
+logfile test_ldrb.log
+set cpu debug=ALL
+load test_ldrb.bin 0x8000
+version
+set r15 0x8000
+regs
+step           
+step          
+regs          
+e 0x8010-0x8013  
+step          

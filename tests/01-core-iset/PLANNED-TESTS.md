@@ -1,0 +1,126 @@
+# Planned ARM7 A32 Core Tests
+
+This file reserves the currently missing numbered test slots from the 171-entry A32 inventory.
+
+These entries are **planned only**. A directory existing here does not mean the instruction is implemented or verified.
+
+Reserved directories added by this patch: **116**
+
+| ID | Instruction | Directory | Status |
+|---:|---|---|---|
+| 028 | SSAT16 | `028_test_ssat16` | PLANNED |
+| 029 | USAT16 | `029_test_usat16` | PLANNED |
+| 031 | SXTB16 | `031_test_sxtb16` | PLANNED |
+| 032 | SXTH | `032_test_sxth` | PLANNED |
+| 033 | UXTB | `033_test_uxtb` | PLANNED |
+| 034 | UXTB16 | `034_test_uxtb16` | PLANNED |
+| 035 | UXTH | `035_test_uxth` | PLANNED |
+| 038 | REV | `038_test_rev` | PLANNED |
+| 039 | REV16 | `039_test_rev16` | PLANNED |
+| 040 | REVSH | `040_test_revsh` | PLANNED |
+| 042 | MLA | `042_test_mla` | PLANNED |
+| 043 | UMULL | `043_test_umull` | PLANNED |
+| 044 | UMLAL | `044_test_umlal` | PLANNED |
+| 045 | SMULL | `045_test_smull` | PLANNED |
+| 046 | SMLAL | `046_test_smlal` | PLANNED |
+| 047 | UMAAL | `047_test_umaal` | PLANNED |
+| 048 | SMLAxy | `048_test_smlaxy` | PLANNED |
+| 049 | SMULxy | `049_test_smulxy` | PLANNED |
+| 050 | SMLAW | `050_test_smlaw` | PLANNED |
+| 051 | SMULW | `051_test_smulw` | PLANNED |
+| 052 | SMLAD | `052_test_smlad` | PLANNED |
+| 053 | SMLADX | `053_test_smladx` | PLANNED |
+| 054 | SMLSD | `054_test_smlsd` | PLANNED |
+| 055 | SMLSDX | `055_test_smlsdx` | PLANNED |
+| 056 | SMUAD | `056_test_smuad` | PLANNED |
+| 057 | SMUADX | `057_test_smuadx` | PLANNED |
+| 058 | SMUSD | `058_test_smusd` | PLANNED |
+| 059 | SMUSDX | `059_test_smusdx` | PLANNED |
+| 060 | SMMLA | `060_test_smmla` | PLANNED |
+| 061 | SMMLS | `061_test_smmls` | PLANNED |
+| 062 | SMMUL | `062_test_smmul` | PLANNED |
+| 063 | QADD | `063_test_qadd` | PLANNED |
+| 064 | QSUB | `064_test_qsub` | PLANNED |
+| 065 | QDADD | `065_test_qdadd` | PLANNED |
+| 066 | QDSUB | `066_test_qdsub` | PLANNED |
+| 067 | SADD16 | `067_test_sadd16` | PLANNED |
+| 068 | SSUB16 | `068_test_ssub16` | PLANNED |
+| 069 | SASX | `069_test_sasx` | PLANNED |
+| 070 | SSAX | `070_test_ssax` | PLANNED |
+| 071 | UADD16 | `071_test_uadd16` | PLANNED |
+| 072 | USUB16 | `072_test_usub16` | PLANNED |
+| 073 | UASX | `073_test_uasx` | PLANNED |
+| 074 | USAX | `074_test_usax` | PLANNED |
+| 075 | QADD16 | `075_test_qadd16` | PLANNED |
+| 076 | QSUB16 | `076_test_qsub16` | PLANNED |
+| 077 | QASX | `077_test_qasx` | PLANNED |
+| 078 | QSAX | `078_test_qsax` | PLANNED |
+| 079 | UQADD16 | `079_test_uqadd16` | PLANNED |
+| 080 | UQSUB16 | `080_test_uqsub16` | PLANNED |
+| 081 | UQASX | `081_test_uqasx` | PLANNED |
+| 082 | UQSAX | `082_test_uqsax` | PLANNED |
+| 083 | SADD8 | `083_test_sadd8` | PLANNED |
+| 084 | SSUB8 | `084_test_ssub8` | PLANNED |
+| 085 | UADD8 | `085_test_uadd8` | PLANNED |
+| 086 | USUB8 | `086_test_usub8` | PLANNED |
+| 087 | QADD8 | `087_test_qadd8` | PLANNED |
+| 088 | QSUB8 | `088_test_qsub8` | PLANNED |
+| 089 | UQADD8 | `089_test_uqadd8` | PLANNED |
+| 090 | UQSUB8 | `090_test_uqsub8` | PLANNED |
+| 091 | SHADD16 | `091_test_shadd16` | PLANNED |
+| 092 | SHSUB16 | `092_test_shsub16` | PLANNED |
+| 093 | SHASX | `093_test_shasx` | PLANNED |
+| 094 | SHSAX | `094_test_shsax` | PLANNED |
+| 095 | UHADD16 | `095_test_uhadd16` | PLANNED |
+| 096 | UHSUB16 | `096_test_uhsub16` | PLANNED |
+| 097 | UHASX | `097_test_uhasx` | PLANNED |
+| 098 | UHSAX | `098_test_uhsax` | PLANNED |
+| 099 | SHADD8 | `099_test_shadd8` | PLANNED |
+| 100 | SHSUB8 | `100_test_shsub8` | PLANNED |
+| 101 | UHADD8 | `101_test_uhadd8` | PLANNED |
+| 102 | UHSUB8 | `102_test_uhsub8` | PLANNED |
+| 103 | SEL | `103_test_sel` | PLANNED |
+| 116 | SWP | `116_test_swp` | PLANNED |
+| 117 | SWPB | `117_test_swpb` | PLANNED |
+| 118 | LDREX | `118_test_ldrex` | PLANNED |
+| 119 | STREX | `119_test_strex` | PLANNED |
+| 120 | LDREXB | `120_test_ldrexb` | PLANNED |
+| 121 | STREXB | `121_test_strexb` | PLANNED |
+| 122 | LDREXH | `122_test_ldrexh` | PLANNED |
+| 123 | STREXH | `123_test_strexh` | PLANNED |
+| 124 | LDREXD | `124_test_ldrexd` | PLANNED |
+| 125 | STREXD | `125_test_strexd` | PLANNED |
+| 126 | PLD | `126_test_pld` | PLANNED |
+| 127 | PLDW | `127_test_pldw` | PLANNED |
+| 128 | PLI | `128_test_pli` | PLANNED |
+| 131 | BLX (imm) | `131_test_blx_imm` | PLANNED |
+| 132 | BLX (reg) | `132_test_blx_reg` | PLANNED |
+| 134 | BXJ | `134_test_bxj` | PLANNED |
+| 137 | HVC | `137_test_hvc` | PLANNED |
+| 138 | SMC | `138_test_smc` | PLANNED |
+| 139 | UDF | `139_test_udf` | PLANNED |
+| 140 | ERET | `140_test_eret` | PLANNED |
+| 141 | RFE | `141_test_rfe` | PLANNED |
+| 142 | SRS | `142_test_srs` | PLANNED |
+| 146 | SETEND | `146_test_setend` | PLANNED |
+| 147 | CLREX | `147_test_clrex` | PLANNED |
+| 148 | DMB | `148_test_dmb` | PLANNED |
+| 150 | ISB | `150_test_isb` | PLANNED |
+| 152 | YIELD | `152_test_yield` | PLANNED |
+| 153 | WFE | `153_test_wfe` | PLANNED |
+| 155 | SEV | `155_test_sev` | PLANNED |
+| 156 | SEVL | `156_test_sevl` | PLANNED |
+| 157 | DBG | `157_test_dbg` | PLANNED |
+| 158 | CDP | `158_test_cdp` | PLANNED |
+| 159 | CDP2 | `159_test_cdp2` | PLANNED |
+| 160 | LDC | `160_test_ldc` | PLANNED |
+| 161 | LDC2 | `161_test_ldc2` | PLANNED |
+| 162 | STC | `162_test_stc` | PLANNED |
+| 163 | STC2 | `163_test_stc2` | PLANNED |
+| 164 | MCR | `164_test_mcr` | PLANNED |
+| 165 | MCR2 | `165_test_mcr2` | PLANNED |
+| 166 | MRC | `166_test_mrc` | PLANNED |
+| 167 | MRC2 | `167_test_mrc2` | PLANNED |
+| 168 | MCRR | `168_test_mcrr` | PLANNED |
+| 169 | MCRR2 | `169_test_mcrr2` | PLANNED |
+| 170 | MRRC | `170_test_mrrc` | PLANNED |

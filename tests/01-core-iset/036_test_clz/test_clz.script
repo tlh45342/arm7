@@ -1,0 +1,7 @@
+set cpu debug=all
+logfile test_clz.log
+version
+load test_clz.bin 0x8000
+set r15 0x8000
+run
+regs

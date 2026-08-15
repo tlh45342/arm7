@@ -1,0 +1,7 @@
+logfile test_rtc_mmio.log
+set cpu debug=INSTR
+load test_rtc_mmio.bin 0x8000
+set pc 0x8000
+run
+e 0x00100000-0x0010001B
+quit

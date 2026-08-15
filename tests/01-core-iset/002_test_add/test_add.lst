@@ -1,0 +1,15 @@
+
+test_add.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a00000 	mov	r0, #0
+    8004:	e2801005 	add	r1, r0, #5
+    8008:	e2812007 	add	r2, r1, #7
+    800c:	e3a0300a 	mov	r3, #10
+    8010:	e0824003 	add	r4, r2, r3
+    8014:	e3e05000 	mvn	r5, #0
+    8018:	e2856001 	add	r6, r5, #1
+    801c:	e1212374 	bkpt	0x1234

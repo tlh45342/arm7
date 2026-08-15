@@ -1,0 +1,6 @@
+logfile test_barriers.log
+set cpu debug=all
+load test_barriers.bin 0x8000
+set r15 0x8000
+run
+regs

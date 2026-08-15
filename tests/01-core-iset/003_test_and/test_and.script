@@ -1,0 +1,6 @@
+set cpu debug=ALL
+logfile test_and.log
+load test_and.bin 0x8000
+set r15 0x8000
+run
+regs

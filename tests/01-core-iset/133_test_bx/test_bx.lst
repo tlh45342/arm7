@@ -1,0 +1,72 @@
+
+test_bx.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3006000 	movw	r6, #0
+    8004:	e3406010 	movt	r6, #16
+    8008:	e59f009c 	ldr	r0, [pc, #156]	; 80ac <sub_bx_return+0x8>
+    800c:	e12fff10 	bx	r0
+
+00008010 <bx_fail_1>:
+    8010:	e3a01011 	mov	r1, #17
+    8014:	e5861000 	str	r1, [r6]
+    8018:	e120ba7d 	bkpt	0x0bad
+
+0000801c <bx_target_1>:
+    801c:	e3a010aa 	mov	r1, #170	; 0xaa
+    8020:	e5861000 	str	r1, [r6]
+    8024:	eb00001e 	bl	80a4 <sub_bx_return>
+    8028:	e5862004 	str	r2, [r6, #4]
+    802c:	e3a03001 	mov	r3, #1
+    8030:	e3a04002 	mov	r4, #2
+    8034:	e1530004 	cmp	r3, r4
+    8038:	e59f5070 	ldr	r5, [pc, #112]	; 80b0 <sub_bx_return+0xc>
+    803c:	012fff15 	bxeq	r5
+    8040:	e3a07033 	mov	r7, #51	; 0x33
+    8044:	e5867008 	str	r7, [r6, #8]
+    8048:	ea000002 	b	8058 <after_case_3>
+
+0000804c <bx_fail_3>:
+    804c:	e3a07077 	mov	r7, #119	; 0x77
+    8050:	e5867008 	str	r7, [r6, #8]
+    8054:	e120ba7d 	bkpt	0x0bad
+
+00008058 <after_case_3>:
+    8058:	e3a03005 	mov	r3, #5
+    805c:	e3a04005 	mov	r4, #5
+    8060:	e1530004 	cmp	r3, r4
+    8064:	e59f5048 	ldr	r5, [pc, #72]	; 80b4 <sub_bx_return+0x10>
+    8068:	012fff15 	bxeq	r5
+
+0000806c <bx_fail_4>:
+    806c:	e3a08044 	mov	r8, #68	; 0x44
+    8070:	e586800c 	str	r8, [r6, #12]
+    8074:	e120ba7d 	bkpt	0x0bad
+
+00008078 <bx_target_4>:
+    8078:	e3a08055 	mov	r8, #85	; 0x55
+    807c:	e586800c 	str	r8, [r6, #12]
+    8080:	e1580008 	cmp	r8, r8
+    8084:	e59f902c 	ldr	r9, [pc, #44]	; 80b8 <sub_bx_return+0x14>
+    8088:	e12fff19 	bx	r9
+
+0000808c <bx_fail_5>:
+    808c:	e3a0a066 	mov	sl, #102	; 0x66
+    8090:	e586a010 	str	sl, [r6, #16]
+    8094:	e120ba7d 	bkpt	0x0bad
+
+00008098 <bx_target_5>:
+    8098:	e10fa000 	mrs	sl, CPSR
+    809c:	e586a010 	str	sl, [r6, #16]
+    80a0:	e1213774 	bkpt	0x1374
+
+000080a4 <sub_bx_return>:
+    80a4:	e3a02022 	mov	r2, #34	; 0x22
+    80a8:	e12fff1e 	bx	lr
+    80ac:	0000801c 	.word	0x0000801c
+    80b0:	0000804c 	.word	0x0000804c
+    80b4:	00008078 	.word	0x00008078
+    80b8:	00008098 	.word	0x00008098

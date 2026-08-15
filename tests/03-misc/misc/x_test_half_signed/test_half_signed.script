@@ -1,0 +1,6 @@
+logfile test_half_signed.log
+set cpu debug=all
+load test_half_signed.bin 0x8000
+set r15 0x8000
+run
+regs

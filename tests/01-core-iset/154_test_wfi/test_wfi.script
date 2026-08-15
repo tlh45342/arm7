@@ -1,0 +1,6 @@
+set cpu debug=all
+logfile test_wfi.log
+load test_wfi.bin 0x8000
+set r15 0x8000
+step 1
+regs

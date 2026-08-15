@@ -1,0 +1,30 @@
+
+test_bic.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a000f0 	mov	r0, #240	; 0xf0
+    8004:	e328f000 	msr	CPSR_f, #0
+    8008:	e3d010f0 	bics	r1, r0, #240	; 0xf0
+    800c:	e10fa000 	mrs	sl, CPSR
+    8010:	e20aa20f 	and	sl, sl, #-268435456	; 0xf0000000
+    8014:	e3d02102 	bics	r2, r0, #-2147483648	; 0x80000000
+    8018:	e10fb000 	mrs	fp, CPSR
+    801c:	e20bb20f 	and	fp, fp, #-268435456	; 0xf0000000
+    8020:	e3a03001 	mov	r3, #1
+    8024:	e3833102 	orr	r3, r3, #-2147483648	; 0x80000000
+    8028:	e3a04001 	mov	r4, #1
+    802c:	e1d35f84 	bics	r5, r3, r4, lsl #31
+    8030:	e10fc000 	mrs	ip, CPSR
+    8034:	e20cc20f 	and	ip, ip, #-268435456	; 0xf0000000
+    8038:	e10f9000 	mrs	r9, CPSR
+    803c:	e3899202 	orr	r9, r9, #536870912	; 0x20000000
+    8040:	e128f009 	msr	CPSR_f, r9
+    8044:	e3a06000 	mov	r6, #0
+    8048:	e1d07006 	bics	r7, r0, r6
+    804c:	e10fd000 	mrs	sp, CPSR
+    8050:	e20dd20f 	and	sp, sp, #-268435456	; 0xf0000000
+    8054:	e1a0e00e 	mov	lr, lr
+    8058:	e1212374 	bkpt	0x1234

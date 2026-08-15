@@ -1,0 +1,8 @@
+set cpu debug=ALL
+logfile test_teq.log
+version
+load test_teq.bin 0x00008000
+set r15 0x8000
+regs
+run
+regs

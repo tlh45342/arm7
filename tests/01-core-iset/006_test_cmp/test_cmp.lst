@@ -1,0 +1,31 @@
+
+test_cmp.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a01012 	mov	r1, #18
+    8004:	e3a02012 	mov	r2, #18
+    8008:	e1510002 	cmp	r1, r2
+    800c:	e10f0000 	mrs	r0, CPSR
+    8010:	e5860000 	str	r0, [r6]
+    8014:	e3a00001 	mov	r0, #1
+    8018:	e3500002 	cmp	r0, #2
+    801c:	e10f1000 	mrs	r1, CPSR
+    8020:	e5861004 	str	r1, [r6, #4]
+    8024:	e3000000 	movw	r0, #0
+    8028:	e3480000 	movt	r0, #32768	; 0x8000
+    802c:	e3500001 	cmp	r0, #1
+    8030:	e10f2000 	mrs	r2, CPSR
+    8034:	e5862008 	str	r2, [r6, #8]
+    8038:	e3a02010 	mov	r2, #16
+    803c:	e3a03001 	mov	r3, #1
+    8040:	e1520203 	cmp	r2, r3, lsl #4
+    8044:	e10f4000 	mrs	r4, CPSR
+    8048:	e586400c 	str	r4, [r6, #12]
+    804c:	e3e04000 	mvn	r4, #0
+    8050:	e3540000 	cmp	r4, #0
+    8054:	e10f5000 	mrs	r5, CPSR
+    8058:	e5865010 	str	r5, [r6, #16]
+    805c:	e1212374 	.word	0xe1212374

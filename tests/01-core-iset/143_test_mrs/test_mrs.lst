@@ -1,0 +1,37 @@
+
+test_mrs.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a0e000 	mov	lr, #0
+    8004:	e10f0000 	mrs	r0, CPSR
+    8008:	e3a0a005 	mov	sl, #5
+    800c:	e15a000a 	cmp	sl, sl
+    8010:	e10f1000 	mrs	r1, CPSR
+    8014:	e3a0b000 	mov	fp, #0
+    8018:	e25bb001 	subs	fp, fp, #1
+    801c:	e10f2000 	mrs	r2, CPSR
+    8020:	e3a0c101 	mov	ip, #1073741824	; 0x40000000
+    8024:	e09cc00c 	adds	ip, ip, ip
+    8028:	e10f3000 	mrs	r3, CPSR
+    802c:	e3e0a000 	mvn	sl, #0
+    8030:	e29aa001 	adds	sl, sl, #1
+    8034:	e10f4000 	mrs	r4, CPSR
+    8038:	e15e000e 	cmp	lr, lr
+    803c:	e10f5000 	mrs	r5, CPSR
+    8040:	e3a0a0f0 	mov	sl, #240	; 0xf0
+    8044:	e31a000f 	tst	sl, #15
+    8048:	e10f6000 	mrs	r6, CPSR
+    804c:	e3a0b102 	mov	fp, #-2147483648	; 0x80000000
+    8050:	e33b0001 	teq	fp, #1
+    8054:	e10f7000 	mrs	r7, CPSR
+    8058:	e10f8000 	mrs	r8, CPSR
+    805c:	e3a0a20a 	mov	sl, #-1610612736	; 0xa0000000
+    8060:	e128f00a 	msr	CPSR_f, sl
+    8064:	e10f9000 	mrs	r9, CPSR
+    8068:	e128f008 	msr	CPSR_f, r8
+    806c:	e51fd000 	ldr	sp, [pc, #-0]	; 8074 <_start+0x74>
+    8070:	e1212374 	bkpt	0x1234
+    8074:	deadbeef 	.word	0xdeadbeef

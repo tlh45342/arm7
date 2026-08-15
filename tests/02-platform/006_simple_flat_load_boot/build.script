@@ -1,0 +1,6 @@
+create O:\arm7\tests\02-platform\006_simple_flat_load_boot\disk0-test.img 1M
+format O:\arm7\tests\02-platform\006_simple_flat_load_boot\disk0-test.img
+put O:\arm7\tests\02-platform\006_simple_flat_load_boot\disk0-test.img O:\arm7\tests\02-platform\006_simple_flat_load_boot\DUMMY.BIN DUMMY.BIN
+put O:\arm7\tests\02-platform\006_simple_flat_load_boot\disk0-test.img O:\arm7\tests\02-platform\006_simple_flat_load_boot\BOOT.BIN BOOT.BIN
+info O:\arm7\tests\02-platform\006_simple_flat_load_boot\disk0-test.img
+list O:\arm7\tests\02-platform\006_simple_flat_load_boot\disk0-test.img

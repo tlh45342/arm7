@@ -1,0 +1,6 @@
+logfile test_dp_flags.log
+set cpu debug=all
+load test_dp_flags.bin 0x8000
+set r15 0x8000
+run
+regs

@@ -1,0 +1,6 @@
+logfile test_rsb.log
+set cpu debug=all
+load test_rsb.bin 0x8000
+set r15 0x8000
+run
+regs

@@ -1,0 +1,96 @@
+
+test_lsl.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a0e000 	mov	lr, #0
+    8004:	e3a00005 	mov	r0, #5
+    8008:	e1500000 	cmp	r0, r0
+    800c:	e10f4000 	mrs	r4, CPSR
+    8010:	e3a00001 	mov	r0, #1
+    8014:	e1b02080 	lsls	r2, r0, #1
+    8018:	e10f5000 	mrs	r5, CPSR
+    801c:	e3a00102 	mov	r0, #-2147483648	; 0x80000000
+    8020:	e1b02080 	lsls	r2, r0, #1
+    8024:	e10f6000 	mrs	r6, CPSR
+    8028:	e3a00101 	mov	r0, #1073741824	; 0x40000000
+    802c:	e1b02080 	lsls	r2, r0, #1
+    8030:	e10f7000 	mrs	r7, CPSR
+    8034:	e3a00000 	mov	r0, #0
+    8038:	e1b02080 	lsls	r2, r0, #1
+    803c:	e10f8000 	mrs	r8, CPSR
+    8040:	e3a00001 	mov	r0, #1
+    8044:	e1b02f80 	lsls	r2, r0, #31
+    8048:	e10f9000 	mrs	r9, CPSR
+    804c:	e3a00003 	mov	r0, #3
+    8050:	e1b02f80 	lsls	r2, r0, #31
+    8054:	e10fa000 	mrs	sl, CPSR
+    8058:	e3a00001 	mov	r0, #1
+    805c:	e1b01000 	movs	r1, r0
+    8060:	e10fb000 	mrs	fp, CPSR
+    8064:	e1a02280 	lsl	r2, r0, #5
+    8068:	e10fc000 	mrs	ip, CPSR
+    806c:	e3a00001 	mov	r0, #1
+    8070:	e3a03000 	mov	r3, #0
+    8074:	e1b02310 	lsls	r2, r0, r3
+    8078:	e10f1000 	mrs	r1, CPSR
+    807c:	e3a03001 	mov	r3, #1
+    8080:	e1b02310 	lsls	r2, r0, r3
+    8084:	e10f2000 	mrs	r2, CPSR
+    8088:	e3a0301f 	mov	r3, #31
+    808c:	e1b02310 	lsls	r2, r0, r3
+    8090:	e10f3000 	mrs	r3, CPSR
+    8094:	e3a03020 	mov	r3, #32
+    8098:	e1b02310 	lsls	r2, r0, r3
+    809c:	e10fe000 	mrs	lr, CPSR
+    80a0:	e3a00002 	mov	r0, #2
+    80a4:	e3a03020 	mov	r3, #32
+    80a8:	e1b02310 	lsls	r2, r0, r3
+    80ac:	e10f5000 	mrs	r5, CPSR
+    80b0:	e3a00001 	mov	r0, #1
+    80b4:	e3a03021 	mov	r3, #33	; 0x21
+    80b8:	e1b02310 	lsls	r2, r0, r3
+    80bc:	e10f6000 	mrs	r6, CPSR
+    80c0:	e3a00001 	mov	r0, #1
+    80c4:	e3a03000 	mov	r3, #0
+    80c8:	e3833c01 	orr	r3, r3, #256	; 0x100
+    80cc:	e1b02310 	lsls	r2, r0, r3
+    80d0:	e10f7000 	mrs	r7, CPSR
+    80d4:	e3a00001 	mov	r0, #1
+    80d8:	e3a030ff 	mov	r3, #255	; 0xff
+    80dc:	e1b02310 	lsls	r2, r0, r3
+    80e0:	e10f8000 	mrs	r8, CPSR
+    80e4:	e3a00001 	mov	r0, #1
+    80e8:	e3a01001 	mov	r1, #1
+    80ec:	e1500001 	cmp	r0, r1
+    80f0:	e10f9000 	mrs	r9, CPSR
+    80f4:	e3a02010 	mov	r2, #16
+    80f8:	01a02080 	lsleq	r2, r0, #1
+    80fc:	e10fa000 	mrs	sl, CPSR
+    8100:	e3a00001 	mov	r0, #1
+    8104:	e3a01001 	mov	r1, #1
+    8108:	e1500001 	cmp	r0, r1
+    810c:	e10fb000 	mrs	fp, CPSR
+    8110:	e3a02020 	mov	r2, #32
+    8114:	11a02080 	lslne	r2, r0, #1
+    8118:	e10fc000 	mrs	ip, CPSR
+    811c:	e3a00003 	mov	r0, #3
+    8120:	e1b02080 	lsls	r2, r0, #1
+    8124:	e10f1000 	mrs	r1, CPSR
+    8128:	e3a00102 	mov	r0, #-2147483648	; 0x80000000
+    812c:	e1b02080 	lsls	r2, r0, #1
+    8130:	e10f2000 	mrs	r2, CPSR
+    8134:	e3a0021f 	mov	r0, #-268435455	; 0xf0000001
+    8138:	e1b02080 	lsls	r2, r0, #1
+    813c:	e10f3000 	mrs	r3, CPSR
+    8140:	e15e000e 	cmp	lr, lr
+    8144:	e10f4000 	mrs	r4, CPSR
+    8148:	e59fd008 	ldr	sp, [pc, #8]	; 8158 <deadbeef_val+0x4>
+    814c:	e59dd000 	ldr	sp, [sp]
+    8150:	e1212374 	.word	0xe1212374
+
+00008154 <deadbeef_val>:
+    8154:	deadbeef 	.word	0xdeadbeef
+    8158:	00008154 	.word	0x00008154

@@ -1,0 +1,6 @@
+create O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\disk0-test.img 1M
+format O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\disk0-test.img
+put O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\disk0-test.img O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\DUMMY.BIN DUMMY.BIN
+put O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\disk0-test.img O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\BOOT.BIN BOOT.BIN
+put O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\disk0-test.img O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\MONITOR.BIN MONITOR.BIN
+list O:\arm7\tests\02-platform\010_simple_flat_monitor_handoff\disk0-test.img

@@ -1,0 +1,4 @@
+logfile ansi.log
+load test_ansi.bin 0x8000
+set r15 0x8000
+run

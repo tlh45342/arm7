@@ -1,0 +1,7 @@
+logfile test_disk_read.log
+set cpu debug=all
+load test_disk_read.bin 0x8000
+set r15 0x8000
+attach disk0 floppy.img
+run
+e 0x00010000-0x0001002f

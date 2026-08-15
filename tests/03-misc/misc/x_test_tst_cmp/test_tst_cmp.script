@@ -1,0 +1,6 @@
+logfile test_tst_cmp.log
+set cpu debug=all
+load test_tst_cmp.bin 0x8000
+set r15 0x8000
+run
+regs

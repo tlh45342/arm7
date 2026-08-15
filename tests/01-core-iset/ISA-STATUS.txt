@@ -1,0 +1,254 @@
+ARM7 ISA TEST STATUS
+====================
+
+Root: O:\arm7\tests\01-core-iset
+Total test directories: 195
+
+SUMMARY
+-------
+PASS        : 46
+NO MAKEFILE : 149
+
+DETAIL
+------
+001_test_adc             PASS
+    log: inventory-logs/001_test_adc.log
+002_test_add             PASS
+    log: inventory-logs/002_test_add.log
+003_test_and             PASS
+    log: inventory-logs/003_test_and.log
+004_test_bic             PASS
+    log: inventory-logs/004_test_bic.log
+005_test_cmn             PASS
+    log: inventory-logs/005_test_cmn.log
+006_test_cmp             PASS
+    log: inventory-logs/006_test_cmp.log
+007_test_eor             PASS
+    log: inventory-logs/007_test_eor.log
+008_test_mov             PASS
+    log: inventory-logs/008_test_mov.log
+009_test_mvn             PASS
+    log: inventory-logs/009_test_mvn.log
+010_test_orr             PASS
+    log: inventory-logs/010_test_orr.log
+011_test_rsb             PASS
+    log: inventory-logs/011_test_rsb.log
+012_test_rsc             PASS
+    log: inventory-logs/012_test_rsc.log
+013_test_sbc             PASS
+    log: inventory-logs/013_test_sbc.log
+014_test_sub             PASS
+    log: inventory-logs/014_test_sub.log
+015_test_teq             PASS
+    log: inventory-logs/015_test_teq.log
+016_test_tst             PASS
+    log: inventory-logs/016_test_tst.log
+017_test_asr             PASS
+    log: inventory-logs/017_test_asr.log
+018_test_lsl             PASS
+    log: inventory-logs/018_test_lsl.log
+019_test_lsr             PASS
+    log: inventory-logs/019_test_lsr.log
+020_test_ror             PASS
+    log: inventory-logs/020_test_ror.log
+021_test_rrx             PASS
+    log: inventory-logs/021_test_rrx.log
+022_test_bfc             PASS
+    log: inventory-logs/022_test_bfc.log
+023_test_bfi             PASS
+    log: inventory-logs/023_test_bfi.log
+024_test_sbfx            NO MAKEFILE (rc=2)
+025_test_ubfx            NO MAKEFILE (rc=2)
+026_test_ssat            NO MAKEFILE (rc=2)
+027_test_usat            PASS
+    log: inventory-logs/027_test_usat.log
+028_test_ssat16          NO MAKEFILE (rc=2)
+029_test_usat16          NO MAKEFILE (rc=2)
+030_test_sxtb            NO MAKEFILE (rc=2)
+031_test_sxtb16          NO MAKEFILE (rc=2)
+032_test_sxth            NO MAKEFILE (rc=2)
+033_test_uxtb            NO MAKEFILE (rc=2)
+034_test_uxtb16          NO MAKEFILE (rc=2)
+035_test_uxth            NO MAKEFILE (rc=2)
+036_test_clz             PASS
+    log: inventory-logs/036_test_clz.log
+037_test_rbit            PASS
+    log: inventory-logs/037_test_rbit.log
+038_test_rev             NO MAKEFILE (rc=2)
+039_test_rev16           NO MAKEFILE (rc=2)
+040_test_revsh           NO MAKEFILE (rc=2)
+041_test_mul             PASS
+    log: inventory-logs/041_test_mul.log
+042_test_mla             NO MAKEFILE (rc=2)
+043_test_umull           NO MAKEFILE (rc=2)
+044_test_umlal           NO MAKEFILE (rc=2)
+045_test_smull           NO MAKEFILE (rc=2)
+046_test_smlal           NO MAKEFILE (rc=2)
+047_test_umaal           NO MAKEFILE (rc=2)
+048_test_smlaxy          NO MAKEFILE (rc=2)
+049_test_smulxy          NO MAKEFILE (rc=2)
+050_test_smlaw           NO MAKEFILE (rc=2)
+051_test_smulw           NO MAKEFILE (rc=2)
+052_test_smlad           NO MAKEFILE (rc=2)
+053_test_smladx          NO MAKEFILE (rc=2)
+054_test_smlsd           NO MAKEFILE (rc=2)
+055_test_smlsdx          NO MAKEFILE (rc=2)
+056_test_smuad           NO MAKEFILE (rc=2)
+057_test_smuadx          NO MAKEFILE (rc=2)
+058_test_smusd           NO MAKEFILE (rc=2)
+059_test_smusdx          NO MAKEFILE (rc=2)
+060_test_smmla           NO MAKEFILE (rc=2)
+061_test_smmls           NO MAKEFILE (rc=2)
+062_test_smmul           NO MAKEFILE (rc=2)
+063_test_qadd            NO MAKEFILE (rc=2)
+064_test_qsub            NO MAKEFILE (rc=2)
+065_test_qdadd           NO MAKEFILE (rc=2)
+066_test_qdsub           NO MAKEFILE (rc=2)
+067_test_sadd16          NO MAKEFILE (rc=2)
+068_test_ssub16          NO MAKEFILE (rc=2)
+069_test_sasx            NO MAKEFILE (rc=2)
+070_test_ssax            NO MAKEFILE (rc=2)
+071_test_uadd16          NO MAKEFILE (rc=2)
+072_test_usub16          NO MAKEFILE (rc=2)
+073_test_uasx            NO MAKEFILE (rc=2)
+074_test_usax            NO MAKEFILE (rc=2)
+075_test_qadd16          NO MAKEFILE (rc=2)
+076_test_qsub16          NO MAKEFILE (rc=2)
+077_test_qasx            NO MAKEFILE (rc=2)
+078_test_qsax            NO MAKEFILE (rc=2)
+079_test_uqadd16         NO MAKEFILE (rc=2)
+080_test_uqsub16         NO MAKEFILE (rc=2)
+081_test_uqasx           NO MAKEFILE (rc=2)
+082_test_uqsax           NO MAKEFILE (rc=2)
+083_test_sadd8           NO MAKEFILE (rc=2)
+084_test_ssub8           NO MAKEFILE (rc=2)
+085_test_uadd8           NO MAKEFILE (rc=2)
+086_test_usub8           NO MAKEFILE (rc=2)
+087_test_qadd8           NO MAKEFILE (rc=2)
+088_test_qsub8           NO MAKEFILE (rc=2)
+089_test_uqadd8          NO MAKEFILE (rc=2)
+090_test_uqsub8          NO MAKEFILE (rc=2)
+091_test_shadd16         NO MAKEFILE (rc=2)
+092_test_shsub16         NO MAKEFILE (rc=2)
+093_test_shasx           NO MAKEFILE (rc=2)
+094_test_shsax           NO MAKEFILE (rc=2)
+095_test_uhadd16         NO MAKEFILE (rc=2)
+096_test_uhsub16         NO MAKEFILE (rc=2)
+097_test_uhasx           NO MAKEFILE (rc=2)
+098_test_uhsax           NO MAKEFILE (rc=2)
+099_test_shadd8          NO MAKEFILE (rc=2)
+100_test_shsub8          NO MAKEFILE (rc=2)
+101_test_uhadd8          NO MAKEFILE (rc=2)
+102_test_uhsub8          NO MAKEFILE (rc=2)
+103_test_sel             NO MAKEFILE (rc=2)
+104_test_ldr             PASS
+    log: inventory-logs/104_test_ldr.log
+105_test_str             PASS
+    log: inventory-logs/105_test_str.log
+106_test_ldrb            PASS
+    log: inventory-logs/106_test_ldrb.log
+107_test_strb            PASS
+    log: inventory-logs/107_test_strb.log
+108_test_ldrh            PASS
+    log: inventory-logs/108_test_ldrh.log
+109_test_strh            NO MAKEFILE (rc=2)
+110_test_ldrsb           NO MAKEFILE (rc=2)
+111_test_ldrsh           NO MAKEFILE (rc=2)
+112_test_ldrd            NO MAKEFILE (rc=2)
+113_test_strd            NO MAKEFILE (rc=2)
+114_test_ldm             NO MAKEFILE (rc=2)
+115_test_stm             NO MAKEFILE (rc=2)
+116_test_swp             NO MAKEFILE (rc=2)
+117_test_swpb            NO MAKEFILE (rc=2)
+118_test_ldrex           NO MAKEFILE (rc=2)
+119_test_strex           NO MAKEFILE (rc=2)
+120_test_ldrexb          NO MAKEFILE (rc=2)
+121_test_strexb          NO MAKEFILE (rc=2)
+122_test_ldrexh          NO MAKEFILE (rc=2)
+123_test_strexh          NO MAKEFILE (rc=2)
+124_test_ldrexd          NO MAKEFILE (rc=2)
+125_test_strexd          NO MAKEFILE (rc=2)
+126_test_pld             NO MAKEFILE (rc=2)
+127_test_pldw            NO MAKEFILE (rc=2)
+128_test_pli             NO MAKEFILE (rc=2)
+129_test_b               PASS
+    log: inventory-logs/129_test_b.log
+130_test_bl              PASS
+    log: inventory-logs/130_test_bl.log
+131_test_blx_imm         NO MAKEFILE (rc=2)
+132_test_blx_reg         NO MAKEFILE (rc=2)
+133_test_bx              PASS
+    log: inventory-logs/133_test_bx.log
+134_test_bxj             NO MAKEFILE (rc=2)
+135_test_bkpt            PASS
+    log: inventory-logs/135_test_bkpt.log
+136_test_svc             PASS
+    log: inventory-logs/136_test_svc.log
+137_test_hvc             NO MAKEFILE (rc=2)
+138_test_smc             NO MAKEFILE (rc=2)
+139_test_udf             NO MAKEFILE (rc=2)
+140_test_eret            NO MAKEFILE (rc=2)
+141_test_rfe             NO MAKEFILE (rc=2)
+142_test_srs             NO MAKEFILE (rc=2)
+143_test_mrs             PASS
+    log: inventory-logs/143_test_mrs.log
+144_test_msr             PASS
+    log: inventory-logs/144_test_msr.log
+145_test_cps             PASS
+    log: inventory-logs/145_test_cps.log
+146_test_setend          NO MAKEFILE (rc=2)
+147_test_clrex           NO MAKEFILE (rc=2)
+148_test_dmb             NO MAKEFILE (rc=2)
+149_test_dsb             PASS
+    log: inventory-logs/149_test_dsb.log
+150_test_isb             NO MAKEFILE (rc=2)
+151_test_nop             PASS
+    log: inventory-logs/151_test_nop.log
+152_test_yield           NO MAKEFILE (rc=2)
+153_test_wfe             NO MAKEFILE (rc=2)
+154_test_wfi             PASS
+    log: inventory-logs/154_test_wfi.log
+155_test_sev             NO MAKEFILE (rc=2)
+156_test_sevl            NO MAKEFILE (rc=2)
+157_test_dbg             NO MAKEFILE (rc=2)
+158_test_cdp             NO MAKEFILE (rc=2)
+159_test_cdp2            NO MAKEFILE (rc=2)
+160_test_ldc             NO MAKEFILE (rc=2)
+161_test_ldc2            NO MAKEFILE (rc=2)
+162_test_stc             NO MAKEFILE (rc=2)
+163_test_stc2            NO MAKEFILE (rc=2)
+164_test_mcr             NO MAKEFILE (rc=2)
+165_test_mcr2            NO MAKEFILE (rc=2)
+166_test_mrc             NO MAKEFILE (rc=2)
+167_test_mrc2            NO MAKEFILE (rc=2)
+168_test_mcrr            NO MAKEFILE (rc=2)
+169_test_mcrr2           NO MAKEFILE (rc=2)
+170_test_mrrc            NO MAKEFILE (rc=2)
+171_test_mrrc2           PASS
+    log: inventory-logs/171_test_mrrc2.log
+172_test_adr             NO MAKEFILE (rc=2)
+173_test_movw            PASS
+    log: inventory-logs/173_test_movw.log
+174_test_movt            PASS
+    log: inventory-logs/174_test_movt.log
+175_test_mls             NO MAKEFILE (rc=2)
+176_test_pkhbt           NO MAKEFILE (rc=2)
+177_test_pkhtb           NO MAKEFILE (rc=2)
+178_test_sxtab           NO MAKEFILE (rc=2)
+179_test_sxtab16         NO MAKEFILE (rc=2)
+180_test_sxtah           NO MAKEFILE (rc=2)
+181_test_uxtab           NO MAKEFILE (rc=2)
+182_test_uxtab16         NO MAKEFILE (rc=2)
+183_test_uxtah           NO MAKEFILE (rc=2)
+184_test_usad8           NO MAKEFILE (rc=2)
+185_test_usada8          NO MAKEFILE (rc=2)
+186_test_ldrt            NO MAKEFILE (rc=2)
+187_test_ldrbt           NO MAKEFILE (rc=2)
+188_test_ldrht           NO MAKEFILE (rc=2)
+189_test_ldrsbt          NO MAKEFILE (rc=2)
+190_test_ldrsht          NO MAKEFILE (rc=2)
+191_test_strt            NO MAKEFILE (rc=2)
+192_test_strbt           NO MAKEFILE (rc=2)
+193_test_strht           NO MAKEFILE (rc=2)
+194_test_sdiv            NO MAKEFILE (rc=2)
+195_test_udiv            NO MAKEFILE (rc=2)

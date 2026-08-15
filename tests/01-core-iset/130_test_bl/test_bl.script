@@ -1,0 +1,8 @@
+logfile test_bl.log
+set cpu debug=instr
+load test_bl.bin 0x8000
+set pc 0x8000
+run
+regs
+e 0x00100000-0x0010000b
+quit

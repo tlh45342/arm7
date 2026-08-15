@@ -1,0 +1,7 @@
+set cpu debug=all
+logfile test_mul.log
+version
+load test_mul.bin 0x8000
+set r15 0x8000
+run
+regs

@@ -1,0 +1,7 @@
+logfile test_nop.log
+version
+set cpu debug=all
+load test_nop.bin 0x8000
+set r15 0x8000
+run
+regs

@@ -1,0 +1,6 @@
+logfile test_sbcs.log
+version
+set cpu debug=all
+load test_sbcs.bin 0x8000
+set r15 0x8000
+run

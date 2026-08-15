@@ -1,0 +1,6 @@
+logfile test_ldm_stm_basic.log
+set cpu debug=all
+load test_ldm_stm_basic.bin 0x8000
+set r15 0x8000
+run
+regs

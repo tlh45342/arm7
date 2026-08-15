@@ -1,0 +1,7 @@
+set cpu debug=all
+logfile test_eor.log
+version
+load test_eor.bin 0x8000
+set r15 0x8000
+run
+regs

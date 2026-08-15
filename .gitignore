@@ -1,0 +1,38 @@
+# --------------------------------------------------
+# Build products
+# --------------------------------------------------
+
+**/build/
+
+# Python
+**/__pycache__/
+*.pyc
+
+# Executables
+*.exe
+
+# Objects
+*.o
+
+# Libraries
+*.a
+
+# Images
+*.bin
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+
+# IDEs
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# testing
+.zip

@@ -1,0 +1,32 @@
+
+test_and.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e30000f0 	movw	r0, #240	; 0xf0
+    8004:	e34f00f0 	movt	r0, #61680	; 0xf0f0
+    8008:	e3001f0f 	movw	r1, #3855	; 0xf0f
+    800c:	e3401f0f 	movt	r1, #3855	; 0xf0f
+    8010:	e0002001 	and	r2, r0, r1
+    8014:	e0103000 	ands	r3, r0, r0
+    8018:	e20044ff 	and	r4, r0, #-16777216	; 0xff000000
+    801c:	e3001001 	movw	r1, #1
+    8020:	e3481000 	movt	r1, #32768	; 0x8000
+    8024:	e3a02001 	mov	r2, #1
+    8028:	e0115231 	ands	r5, r1, r1, lsr r2
+    802c:	e2106101 	ands	r6, r0, #1073741824	; 0x40000000
+    8030:	e0107000 	ands	r7, r0, r0
+    8034:	e0118001 	ands	r8, r1, r1
+    8038:	e0000001 	and	r0, r0, r1
+    803c:	e3a09000 	mov	r9, #0
+    8040:	e1190009 	tst	r9, r9
+    8044:	1000a000 	andne	sl, r0, r0
+    8048:	e3a0b000 	mov	fp, #0
+    804c:	e01bc00b 	ands	ip, fp, fp
+    8050:	e3a0b102 	mov	fp, #-2147483648	; 0x80000000
+    8054:	e01bd00b 	ands	sp, fp, fp
+    8058:	e200e0ff 	and	lr, r0, #255	; 0xff
+    805c:	e210f102 	ands	pc, r0, #-2147483648	; 0x80000000
+    8060:	e1212374 	bkpt	0x1234

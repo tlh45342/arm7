@@ -1,0 +1,7 @@
+set cpu debug=all
+logfile test_mov.log
+version
+load test_mov.bin 0x8000
+set r15 0x8000
+run
+regs

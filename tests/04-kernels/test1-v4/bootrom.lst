@@ -1,0 +1,212 @@
+
+bootrom.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e59ff018 	ldr	pc, [pc, #24]	; 8020 <_start+0x20>
+    8004:	e59ff018 	ldr	pc, [pc, #24]	; 8024 <_start+0x24>
+    8008:	e59ff018 	ldr	pc, [pc, #24]	; 8028 <_start+0x28>
+    800c:	e59ff018 	ldr	pc, [pc, #24]	; 802c <_start+0x2c>
+    8010:	e59ff018 	ldr	pc, [pc, #24]	; 8030 <_start+0x30>
+    8014:	e59ff018 	ldr	pc, [pc, #24]	; 8034 <_start+0x34>
+    8018:	e59ff018 	ldr	pc, [pc, #24]	; 8038 <_start+0x38>
+    801c:	e59ff018 	ldr	pc, [pc, #24]	; 803c <_start+0x3c>
+    8020:	00008040 	.word	0x00008040
+    8024:	00008078 	.word	0x00008078
+    8028:	00008088 	.word	0x00008088
+    802c:	00008078 	.word	0x00008078
+    8030:	00008078 	.word	0x00008078
+    8034:	00008078 	.word	0x00008078
+    8038:	00008078 	.word	0x00008078
+    803c:	00008078 	.word	0x00008078
+
+00008040 <reset>:
+    8040:	e59fd034 	ldr	sp, [pc, #52]	; 807c <default_handler+0x4>
+    8044:	e59f0034 	ldr	r0, [pc, #52]	; 8080 <default_handler+0x8>
+    8048:	e3a01000 	mov	r1, #0
+    804c:	e3a02040 	mov	r2, #64	; 0x40
+
+00008050 <copy_vectors>:
+    8050:	e4903004 	ldr	r3, [r0], #4
+    8054:	e4813004 	str	r3, [r1], #4
+    8058:	e2522004 	subs	r2, r2, #4
+    805c:	1afffffb 	bne	8050 <copy_vectors>
+    8060:	f57ff04f 	dsb	sy
+    8064:	f57ff06f 	isb	sy
+    8068:	ef000001 	svc	0x00000001
+    806c:	e59f0010 	ldr	r0, [pc, #16]	; 8084 <default_handler+0xc>
+    8070:	ef000002 	svc	0x00000002
+    8074:	e1213774 	bkpt	0x1374
+
+00008078 <default_handler>:
+    8078:	eafffffe 	b	8078 <default_handler>
+    807c:	00009290 	.word	0x00009290
+    8080:	00008000 	.word	0x00008000
+    8084:	00008198 	.word	0x00008198
+
+00008088 <svc_handler>:
+    8088:	e24ec004 	sub	ip, lr, #4
+    808c:	e59cc000 	ldr	ip, [ip]
+    8090:	e3ccc4ff 	bic	ip, ip, #-16777216	; 0xff000000
+    8094:	e35c0001 	cmp	ip, #1
+    8098:	0a000004 	beq	80b0 <svc_console_init>
+    809c:	e35c0002 	cmp	ip, #2
+    80a0:	0a00000f 	beq	80e4 <svc_console_puts>
+    80a4:	e35c0003 	cmp	ip, #3
+    80a8:	0a000018 	beq	8110 <svc_console_putc>
+    80ac:	e1b0f00e 	movs	pc, lr
+
+000080b0 <svc_console_init>:
+    80b0:	e3a0140a 	mov	r1, #167772160	; 0xa000000
+    80b4:	e3002fa0 	movw	r2, #4000	; 0xfa0
+    80b8:	e3a03020 	mov	r3, #32
+    80bc:	e3a04007 	mov	r4, #7
+
+000080c0 <clear_loop>:
+    80c0:	e4c13001 	strb	r3, [r1], #1
+    80c4:	e4c14001 	strb	r4, [r1], #1
+    80c8:	e2522002 	subs	r2, r2, #2
+    80cc:	1afffffb 	bne	80c0 <clear_loop>
+    80d0:	e59f1008 	ldr	r1, [pc, #8]	; 80e0 <clear_loop+0x20>
+    80d4:	e3a02000 	mov	r2, #0
+    80d8:	e5812000 	str	r2, [r1]
+    80dc:	e1b0f00e 	movs	pc, lr
+    80e0:	0a001000 	.word	0x0a001000
+
+000080e4 <svc_console_puts>:
+    80e4:	e1a0600e 	mov	r6, lr
+
+000080e8 <puts_loop>:
+    80e8:	e4d01001 	ldrb	r1, [r0], #1
+    80ec:	e3510000 	cmp	r1, #0
+    80f0:	0a000004 	beq	8108 <puts_done>
+    80f4:	e1a07000 	mov	r7, r0
+    80f8:	e59fe090 	ldr	lr, [pc, #144]	; 8190 <console_done+0x4>
+    80fc:	ea000005 	b	8118 <console_putc>
+
+00008100 <puts_after_putc>:
+    8100:	e1a00007 	mov	r0, r7
+    8104:	eafffff7 	b	80e8 <puts_loop>
+
+00008108 <puts_done>:
+    8108:	e1a0e006 	mov	lr, r6
+    810c:	e1b0f00e 	movs	pc, lr
+
+00008110 <svc_console_putc>:
+    8110:	e1a01000 	mov	r1, r0
+    8114:	eaffffff 	b	8118 <console_putc>
+
+00008118 <console_putc>:
+    8118:	e59f2074 	ldr	r2, [pc, #116]	; 8194 <console_done+0x8>
+    811c:	e5923000 	ldr	r3, [r2]
+    8120:	e3530efa 	cmp	r3, #4000	; 0xfa0
+    8124:	aa000018 	bge	818c <console_done>
+    8128:	e351000a 	cmp	r1, #10
+    812c:	0a000007 	beq	8150 <console_newline>
+
+00008130 <console_normal_char>:
+    8130:	e3a0840a 	mov	r8, #167772160	; 0xa000000
+    8134:	e0888003 	add	r8, r8, r3
+    8138:	e5c81000 	strb	r1, [r8]
+    813c:	e3a09007 	mov	r9, #7
+    8140:	e5c89001 	strb	r9, [r8, #1]
+    8144:	e2833002 	add	r3, r3, #2
+    8148:	e5823000 	str	r3, [r2]
+    814c:	e12fff1e 	bx	lr
+
+00008150 <console_newline>:
+    8150:	e3a040a0 	mov	r4, #160	; 0xa0
+
+00008154 <newline_loop>:
+    8154:	e1530004 	cmp	r3, r4
+    8158:	ba000001 	blt	8164 <newline_set>
+    815c:	e0433004 	sub	r3, r3, r4
+    8160:	eafffffb 	b	8154 <newline_loop>
+
+00008164 <newline_set>:
+    8164:	e0635004 	rsb	r5, r3, r4
+    8168:	e5923000 	ldr	r3, [r2]
+    816c:	e0833005 	add	r3, r3, r5
+    8170:	e3530efa 	cmp	r3, #4000	; 0xfa0
+    8174:	aa000001 	bge	8180 <clamp_end>
+    8178:	e5823000 	str	r3, [r2]
+    817c:	e12fff1e 	bx	lr
+
+00008180 <clamp_end>:
+    8180:	e3003fa0 	movw	r3, #4000	; 0xfa0
+    8184:	e5823000 	str	r3, [r2]
+    8188:	e12fff1e 	bx	lr
+
+0000818c <console_done>:
+    818c:	e12fff1e 	bx	lr
+    8190:	00008100 	.word	0x00008100
+    8194:	0a001000 	.word	0x0a001000
+
+00008198 <hello_msg>:
+    8198:	454e494c 	.word	0x454e494c
+    819c:	0a313020 	.word	0x0a313020
+    81a0:	454e494c 	.word	0x454e494c
+    81a4:	0a323020 	.word	0x0a323020
+    81a8:	454e494c 	.word	0x454e494c
+    81ac:	0a333020 	.word	0x0a333020
+    81b0:	454e494c 	.word	0x454e494c
+    81b4:	0a343020 	.word	0x0a343020
+    81b8:	454e494c 	.word	0x454e494c
+    81bc:	0a353020 	.word	0x0a353020
+    81c0:	454e494c 	.word	0x454e494c
+    81c4:	0a363020 	.word	0x0a363020
+    81c8:	454e494c 	.word	0x454e494c
+    81cc:	0a373020 	.word	0x0a373020
+    81d0:	454e494c 	.word	0x454e494c
+    81d4:	0a383020 	.word	0x0a383020
+    81d8:	454e494c 	.word	0x454e494c
+    81dc:	0a393020 	.word	0x0a393020
+    81e0:	454e494c 	.word	0x454e494c
+    81e4:	0a303120 	.word	0x0a303120
+    81e8:	454e494c 	.word	0x454e494c
+    81ec:	0a313120 	.word	0x0a313120
+    81f0:	454e494c 	.word	0x454e494c
+    81f4:	0a323120 	.word	0x0a323120
+    81f8:	454e494c 	.word	0x454e494c
+    81fc:	0a333120 	.word	0x0a333120
+    8200:	454e494c 	.word	0x454e494c
+    8204:	0a343120 	.word	0x0a343120
+    8208:	454e494c 	.word	0x454e494c
+    820c:	0a353120 	.word	0x0a353120
+    8210:	454e494c 	.word	0x454e494c
+    8214:	0a363120 	.word	0x0a363120
+    8218:	454e494c 	.word	0x454e494c
+    821c:	0a373120 	.word	0x0a373120
+    8220:	454e494c 	.word	0x454e494c
+    8224:	0a383120 	.word	0x0a383120
+    8228:	454e494c 	.word	0x454e494c
+    822c:	0a393120 	.word	0x0a393120
+    8230:	454e494c 	.word	0x454e494c
+    8234:	0a303220 	.word	0x0a303220
+    8238:	454e494c 	.word	0x454e494c
+    823c:	0a313220 	.word	0x0a313220
+    8240:	454e494c 	.word	0x454e494c
+    8244:	0a323220 	.word	0x0a323220
+    8248:	454e494c 	.word	0x454e494c
+    824c:	0a333220 	.word	0x0a333220
+    8250:	454e494c 	.word	0x454e494c
+    8254:	0a343220 	.word	0x0a343220
+    8258:	454e494c 	.word	0x454e494c
+    825c:	0a353220 	.word	0x0a353220
+    8260:	454e494c 	.word	0x454e494c
+    8264:	0a363220 	.word	0x0a363220
+    8268:	454e494c 	.word	0x454e494c
+    826c:	0a373220 	.word	0x0a373220
+    8270:	454e494c 	.word	0x454e494c
+    8274:	0a383220 	.word	0x0a383220
+    8278:	454e494c 	.word	0x454e494c
+    827c:	0a393220 	.word	0x0a393220
+    8280:	454e494c 	.word	0x454e494c
+    8284:	0a303320 	.word	0x0a303320
+    8288:	00          	.byte	0x00
+    8289:	00          	.byte	0x00
+    828a:	0000      	.short	0x0000
+    828c:	e1a00000 	nop			; (mov r0, r0)
+	...

@@ -1,0 +1,39 @@
+
+test_mvn.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3e00000 	mvn	r0, #0
+    8004:	e3a02091 	mov	r2, #145	; 0x91
+    8008:	e320f000 	nop	{0}
+    800c:	e3a010aa 	mov	r1, #170	; 0xaa
+    8010:	e1e03001 	mvn	r3, r1
+    8014:	e3a02092 	mov	r2, #146	; 0x92
+    8018:	e320f000 	nop	{0}
+    801c:	e328f202 	msr	CPSR_f, #536870912	; 0x20000000
+    8020:	e3f04000 	mvns	r4, #0
+    8024:	e3a02093 	mov	r2, #147	; 0x93
+    8028:	e320f000 	nop	{0}
+    802c:	e3a00001 	mov	r0, #1
+    8030:	e1f050a0 	mvns	r5, r0, lsr #1
+    8034:	e3a02094 	mov	r2, #148	; 0x94
+    8038:	e320f000 	nop	{0}
+    803c:	e328f202 	msr	CPSR_f, #536870912	; 0x20000000
+    8040:	e3a00001 	mov	r0, #1
+    8044:	e1f06060 	mvns	r6, r0, rrx
+    8048:	e3a02095 	mov	r2, #149	; 0x95
+    804c:	e320f000 	nop	{0}
+    8050:	e3a00001 	mov	r0, #1
+    8054:	e3a01001 	mov	r1, #1
+    8058:	e1f07110 	mvns	r7, r0, lsl r1
+    805c:	e3a02096 	mov	r2, #150	; 0x96
+    8060:	e320f000 	nop	{0}
+    8064:	e328f202 	msr	CPSR_f, #536870912	; 0x20000000
+    8068:	e3a00055 	mov	r0, #85	; 0x55
+    806c:	e3a01000 	mov	r1, #0
+    8070:	e1f08110 	mvns	r8, r0, lsl r1
+    8074:	e3a02097 	mov	r2, #151	; 0x97
+    8078:	e320f000 	nop	{0}
+    807c:	e1200070 	bkpt	0x0000

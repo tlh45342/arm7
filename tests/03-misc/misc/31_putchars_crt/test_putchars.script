@@ -1,0 +1,12 @@
+logfile test_putchars.log
+version
+load test_putchars.bin 0x8000
+set r15 0x8000
+set cpu debug=all
+e 0x803c-0x8041
+step
+step
+step
+run
+step
+regs

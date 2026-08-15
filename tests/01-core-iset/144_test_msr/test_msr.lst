@@ -1,0 +1,26 @@
+
+test_msr.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3a0e000 	mov	lr, #0
+    8004:	e10f0000 	mrs	r0, CPSR
+    8008:	e328f206 	msr	CPSR_f, #1610612736	; 0x60000000
+    800c:	e10f1000 	mrs	r1, CPSR
+    8010:	e328f102 	msr	CPSR_f, #-2147483648	; 0x80000000
+    8014:	e10f2000 	mrs	r2, CPSR
+    8018:	e3a0a20a 	mov	sl, #-1610612736	; 0xa0000000
+    801c:	e128f00a 	msr	CPSR_f, sl
+    8020:	e10f3000 	mrs	r3, CPSR
+    8024:	e328f000 	msr	CPSR_f, #0
+    8028:	e10f4000 	mrs	r4, CPSR
+    802c:	e3e0b000 	mvn	fp, #0
+    8030:	e128f00b 	msr	CPSR_f, fp
+    8034:	e10f5000 	mrs	r5, CPSR
+    8038:	e128f000 	msr	CPSR_f, r0
+    803c:	e10f6000 	mrs	r6, CPSR
+    8040:	e51fd000 	ldr	sp, [pc, #-0]	; 8048 <_start+0x48>
+    8044:	e1212374 	.word	0xe1212374
+    8048:	deadbeef 	.word	0xdeadbeef

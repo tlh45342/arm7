@@ -1,0 +1,22 @@
+
+test_movt.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3006000 	movw	r6, #0
+    8004:	e3406010 	movt	r6, #16
+    8008:	e3010234 	movw	r0, #4660	; 0x1234
+    800c:	e34a0bcd 	movt	r0, #43981	; 0xabcd
+    8010:	e5860000 	str	r0, [r6]
+    8014:	e30f1fff 	movw	r1, #65535	; 0xffff
+    8018:	e3401000 	movt	r1, #0
+    801c:	e5861004 	str	r1, [r6, #4]
+    8020:	e3002000 	movw	r2, #0
+    8024:	e34f2fff 	movt	r2, #65535	; 0xffff
+    8028:	e5862008 	str	r2, [r6, #8]
+    802c:	e3053678 	movw	r3, #22136	; 0x5678
+    8030:	e3413234 	movt	r3, #4660	; 0x1234
+    8034:	e586300c 	str	r3, [r6, #12]
+    8038:	e1213774 	bkpt	0x1374

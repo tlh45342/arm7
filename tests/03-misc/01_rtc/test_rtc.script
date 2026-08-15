@@ -1,0 +1,6 @@
+logfile test_rtc.log
+set cpu debug=all
+load test_rtc.bin 0x8000
+set r15 0x8000
+run
+regs

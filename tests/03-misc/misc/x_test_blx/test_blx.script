@@ -1,0 +1,6 @@
+logfile test_blx.log
+set cpu debug=all
+load test_blx.bin 0x8000
+set r15 0x8000
+run
+regs

@@ -1,0 +1,7 @@
+set cpu debug=all
+logfile test_stack.log
+version
+load test_stack.bin 0x8000
+set r15 0x8000
+regs
+run

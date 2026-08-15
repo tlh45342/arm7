@@ -1,0 +1,33 @@
+
+test_eor.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3100000 	tst	r0, #0
+    8004:	e3500010 	cmp	r0, #16
+    8008:	e3051678 	movw	r1, #22136	; 0x5678
+    800c:	e3411234 	movt	r1, #4660	; 0x1234
+    8010:	e30a2aaa 	movw	r2, #43690	; 0xaaaa
+    8014:	e34a2aaa 	movt	r2, #43690	; 0xaaaa
+    8018:	e0210002 	eor	r0, r1, r2
+    801c:	e5860000 	str	r0, [r6]
+    8020:	e3a03000 	mov	r3, #0
+    8024:	e3a04001 	mov	r4, #1
+    8028:	e03350a4 	eors	r5, r3, r4, lsr #1
+    802c:	e10f7000 	mrs	r7, CPSR
+    8030:	e5867004 	str	r7, [r6, #4]
+    8034:	e5865008 	str	r5, [r6, #8]
+    8038:	e2218080 	eor	r8, r1, #128	; 0x80
+    803c:	e586800c 	str	r8, [r6, #12]
+    8040:	e2219102 	eor	r9, r1, #-2147483648	; 0x80000000
+    8044:	e5869010 	str	r9, [r6, #16]
+    8048:	e3004001 	movw	r4, #1
+    804c:	e3484000 	movt	r4, #32768	; 0x8000
+    8050:	e3a03000 	mov	r3, #0
+    8054:	e033a0c4 	eors	sl, r3, r4, asr #1
+    8058:	e10fb000 	mrs	fp, CPSR
+    805c:	e586a014 	str	sl, [r6, #20]
+    8060:	e586b018 	str	fp, [r6, #24]
+    8064:	e1212374 	bkpt	0x1234

@@ -1,0 +1,28 @@
+; Test MMIO disk read manually using logging and stepping
+
+logfile test_disk_read.log
+load test_disk_read.bin 0x8000
+set cpu debug=all
+set r15 0x8000
+
+; Step through a few instructions and observe status behavior
+step     ; LDR r0, =DISK_LBA
+step     ; MOV r1, #1 (set LBA = 1)
+step     ; STR r1, [r0]
+step     ; LDR r0, =DISK_BUFFER
+step     ; MOV r1, #0x00100000
+step     ; STR r1, [r0]
+step     ; LDR r0, =DISK_CMD
+step     ; MOV r1, #1
+step     ; STR r1, [r0]   ; start disk read
+
+; Disk read should trigger here — VM prints MMIO log
+
+step     ; LDR r0, =DISK_STATUS
+step     ; LDR r1, [r0]   ; poll status
+regs
+step     ; CMP r1, #2     ; check if done
+step     ; BNE loop
+regs
+step
+regs

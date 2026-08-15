@@ -1,0 +1,48 @@
+
+test_rrx.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3006000 	movw	r6, #0
+    8004:	e3406010 	movt	r6, #16
+    8008:	e3e08000 	mvn	r8, #0
+    800c:	e2988001 	adds	r8, r8, #1
+    8010:	e3a03002 	mov	r3, #2
+    8014:	e1b04063 	rrxs	r4, r3
+    8018:	e10fa000 	mrs	sl, CPSR
+    801c:	e5864000 	str	r4, [r6]
+    8020:	e586a004 	str	sl, [r6, #4]
+    8024:	e3a05001 	mov	r5, #1
+    8028:	e3a07000 	mov	r7, #0
+    802c:	e1570005 	cmp	r7, r5
+    8030:	e1b07063 	rrxs	r7, r3
+    8034:	e10fa000 	mrs	sl, CPSR
+    8038:	e5867008 	str	r7, [r6, #8]
+    803c:	e586a00c 	str	sl, [r6, #12]
+    8040:	e3a05001 	mov	r5, #1
+    8044:	e3a07000 	mov	r7, #0
+    8048:	e1570005 	cmp	r7, r5
+    804c:	e3a03001 	mov	r3, #1
+    8050:	e1b08063 	rrxs	r8, r3
+    8054:	e10fa000 	mrs	sl, CPSR
+    8058:	e5868010 	str	r8, [r6, #16]
+    805c:	e586a014 	str	sl, [r6, #20]
+    8060:	e3e09000 	mvn	r9, #0
+    8064:	e2999001 	adds	r9, r9, #1
+    8068:	e3a03001 	mov	r3, #1
+    806c:	e1b09063 	rrxs	r9, r3
+    8070:	e10fa000 	mrs	sl, CPSR
+    8074:	e5869018 	str	r9, [r6, #24]
+    8078:	e586a01c 	str	sl, [r6, #28]
+    807c:	e3e0b000 	mvn	fp, #0
+    8080:	e29bb001 	adds	fp, fp, #1
+    8084:	e10fc000 	mrs	ip, CPSR
+    8088:	e3a00002 	mov	r0, #2
+    808c:	e1a01060 	rrx	r1, r0
+    8090:	e10fd000 	mrs	sp, CPSR
+    8094:	e5861020 	str	r1, [r6, #32]
+    8098:	e586c024 	str	ip, [r6, #36]	; 0x24
+    809c:	e586d028 	str	sp, [r6, #40]	; 0x28
+    80a0:	e1213774 	bkpt	0x1374

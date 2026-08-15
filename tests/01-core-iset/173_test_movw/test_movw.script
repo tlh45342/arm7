@@ -1,0 +1,8 @@
+logfile test_movw.log
+set cpu debug=instr
+load test_movw.bin 0x8000
+set pc 0x8000
+run
+regs
+e 0x00100000-0x0010000f
+quit

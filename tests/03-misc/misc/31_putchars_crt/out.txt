@@ -1,0 +1,36 @@
+:\arm-vm\test-cases\test_putchars>arm-none-eabi-objdump -d test_putchars.elf
+
+test_putchars.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:       e3e0d23e        mvn     sp, #-536870909 ; 0xe0000003
+    8004:       e59f0038        ldr     r0, [pc, #56]   ; 8044 <msg+0x8>
+    8008:       eb000000        bl      8010 <put_chars>
+    800c:       deadbeef        .word   0xdeadbeef
+
+00008010 <put_chars>:
+    8010:       e92d4800        push    {fp, lr}
+    8014:       e1a0b00d        mov     fp, sp
+    8018:       e1a02000        mov     r2, r0
+
+0000801c <.loop>:
+    801c:       e4d20001        ldrb    r0, [r2], #1
+    8020:       e3500000        cmp     r0, #0
+    8024:       0a000001        beq     8030 <.done>
+    8028:       eb000002        bl      8038 <crt_putc>
+    802c:       eafffffa        b       801c <.loop>
+
+00008030 <.done>:
+    8030:       e8bd4800        pop     {fp, lr}
+    8034:       e12fff1e        bx      lr
+
+00008038 <crt_putc>:
+    8038:       e12fff1e        bx      lr
+
+0000803c <msg>:
+    803c:       51505958        .word   0x51505958
+    8040:       0000000a        .word   0x0000000a
+    8044:       0000803c        .word   0x0000803c

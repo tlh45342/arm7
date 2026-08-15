@@ -1,0 +1,24 @@
+
+test_cps.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00008000 <_start>:
+    8000:	e3006000 	movw	r6, #0
+    8004:	e3406010 	movt	r6, #16
+    8008:	e10f0000 	mrs	r0, CPSR
+    800c:	e5860000 	str	r0, [r6]
+    8010:	f10c00c0 	cpsid	if
+    8014:	e10f1000 	mrs	r1, CPSR
+    8018:	e5861004 	str	r1, [r6, #4]
+    801c:	f1080080 	cpsie	i
+    8020:	e10f2000 	mrs	r2, CPSR
+    8024:	e5862008 	str	r2, [r6, #8]
+    8028:	f10c0100 	cpsid	a
+    802c:	e10f3000 	mrs	r3, CPSR
+    8030:	e586300c 	str	r3, [r6, #12]
+    8034:	f10a0093 	cpsie	i,#19
+    8038:	e10f4000 	mrs	r4, CPSR
+    803c:	e5864010 	str	r4, [r6, #16]
+    8040:	e1212374 	bkpt	0x1234

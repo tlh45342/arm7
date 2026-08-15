@@ -1,0 +1,8 @@
+logfile test_disk_mmio.log
+set cpu debug=INSTR
+attach disk0 disk-test.img
+load test_disk_mmio.bin 0x8000
+set pc 0x8000
+run
+e 0x00110000-0x00110023
+quit
